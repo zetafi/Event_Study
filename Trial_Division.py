@@ -6,7 +6,7 @@ import os.path
 # ALL TRIAL DATA
 ## Extract items with a non null remedy value. COL37 is "remedies_amount".
 ## All items that has a remedy value are trial court cases
-## File saved in data/trial_all.csv   Total : 1061 items
+## File saved in data/Trial/all_complete_trial.csv   Total : 1061 items
 def all_complete_trial_data():
     # filings are too long, add this line to avoid error when reading the csv
     csv.field_size_limit(sys.maxsize)
