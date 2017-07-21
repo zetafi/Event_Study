@@ -53,7 +53,6 @@ def exploring_ap():
 
         keyword = "The judgment or decision is: "
 
-
         for row in apdata:
             tdate = datetime.datetime.strptime(row[25], "%m/%d/%Y").date().strftime("%B %-d, %Y")
 
@@ -65,61 +64,82 @@ def exploring_ap():
             filings[0] = filings[0].replace("[u\'", "")
             filings[-1] = filings[-1].replace("\']", "")
 
-            if "OPINION and JUDGMENT filed" in row[28]:
-                for ind in range(len(filings)):
-                    filings[ind] = filings[ind].replace("The j decision is:", "The judgment or decision is:")
-
-                    cond = ("OPINION and JUDGMENT filed" in filings[ind]) \
-                           and ("The judgment or decision is:" in filings[ind]) \
-                           and not ("This entry was made in error" in filings[ind])
-
-                    #cond2 =
-                    if cond:
-                        count += 1
-                        judgement = filings[ind]
-                        findindex = judgement.find(keyword)
-                        resbegin = findindex + len(keyword)
-                        resend = judgement.find(".", resbegin, resbegin + 80)
-                        judgresult = judgement[int(resbegin):int(resend)]
 
 
-                        print row[26]
-                        print judgresult
-                        print judgement
-                        #print ""
-
-
-            # else:
-            #     evtfilings = ""
+            # if "OPINION and JUDGMENT filed" in row[28]:
             #     for ind in range(len(filings)):
-            #         if fdates[ind] == tdate:
-            #             evtfilings += filings[ind] + " | "
+            #         filings[ind] = filings[ind].replace("The j decision is:", "The judgment or decision is:")
             #
-            #     cond = ("ORDER" in evtfilings) and (
-            #     ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
-            #     or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
-            #     or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
-            #         "REVERSE" in evtfilings)
-            #     or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings))
+            #         cond = ("OPINION and JUDGMENT filed" in filings[ind]) \
+            #                and ("The judgment or decision is:" in filings[ind]) \
+            #                and not ("This entry was made in error" in filings[ind])
             #
-            #     if cond:
-            #         add = True
+            #         if cond:
+            #             count += 1
+            #             judgement = filings[ind]
+            #             findindex = judgement.find(keyword)
+            #             resbegin = findindex + len(keyword)
+            #             resend = judgement.find(".", resbegin, resbegin + 240)
+            #             judgresult = judgement[int(resbegin):int(resend)]
+            #
+            #
+            #
+            #
+            #             ##dates fdates[ind]
+            #             # if tdate != fdates[ind]:
+            #             #     print row[26]
+            #             #     print judgresult
+            #             #     print [tdate, fdates[ind]]
+            #             #print judgement
+            #             result.append(judgresult)
 
 
 
+            if "OPINION and JUDGMENT filed" not in row[28]:
+            #else:
+                evtfilings = ""
+                for ind in range(len(filings)):
+                    if fdates[ind] == tdate:
+                        evtfilings += filings[ind] + " | "
+
+                cond = ("ORDER" in evtfilings) and (
+                ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
+                or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
+                or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
+                    "REVERSE" in evtfilings)
+                or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings)) \
+                       and not (("dismiss" in evtfilings) or ("terminat" in evtfilings))
 
 
+                if cond :
 
-        #
-        # res = []
-        # for url in result:
-        #     res.append(url.split("@"))
-        # ress = sorted(res, key=lambda url:int(url[1]))
-        #
-        # for url in ress:
-        #     if url[2] == "True":
-        #         print url
+                    ###dates  terminated date
+
+
+                    #if "affirm" in evtfilings:
+                    count += 1
+                    evtfilings2 = ""
+                    num = 0
+                    for ind in range(len(fdates)):
+                        if "ORDER" in filings[ind]:
+                            num += 1
+                            evtfilings2 += filings[ind] + " | "
+                    print row[26]
+                    print evtfilings2
+                    print num
+
         print count
+
+
+
+
+
+
+
+
+
+
+
 
 
 

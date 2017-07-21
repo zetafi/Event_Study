@@ -11,10 +11,10 @@ import random
 
 #Fun1
 ################################prices requirer##############################################
-##input: ticker
-##return : True/False
+## Input: ticker
+## Return : True/False
 
-##Dates
+## Dates
 bDate = (1970, 1, 1)
 startDate = (1998, 1, 1)
 endDate = (2017, 5, 30)
@@ -35,14 +35,9 @@ def request_prices(ticker):
         ##solve \u002 situation in the crumb
         #print "before crumb is : " + crumb + "\n"
 
-        # just skip
-        # if(crumb.find("\u002F")!=-1):
-        #     continue
-
         ##replaced
         crumb = crumb.replace("\u002F", "/");
         #print "after crumb is : " + crumb + "\n"
-        ##final solution
         ####
 
         data = (ticker, int((datetime.datetime(*startDate) - datetime.datetime(*bDate)).total_seconds()),
@@ -71,8 +66,9 @@ def request_prices(ticker):
 
 #Fun2
 ################################Ratio calculator###################################################
-##input: compCode EventDate  EstimationWin start/end
-##output: list of ratio in EstWin
+## Input: compCode EventDate  EstimationWin start/end
+## Output: list of ratio in EstWin if no error.
+## Output: return a list of one string of the error information separated by @ if error occurs
 def stock_rr(compCode, eDate, begin, end) :
 
     if not os.path.exists("data/prices/" + compCode + ".csv"):
@@ -89,42 +85,51 @@ def stock_rr(compCode, eDate, begin, end) :
 
 
         ## binary search for the index of the event day
-        low = 1
+        low = 0
         high = len(prices) - 1
         mid = (low + high) / 2
-        while low <= high :
+        while (high - low) > 1 :
             mid = (low + high) / 2
-            if datetime.datetime.strptime(prices[mid][0], "%Y-%m-%d") < eDate :
-                low = mid + 1
+            if datetime.datetime.strptime(prices[mid][0], "%Y-%m-%d") <= eDate :
+                low = mid
             elif eDate < datetime.datetime.strptime(prices[mid][0], "%Y-%m-%d") :
-                high = mid - 1
-            else :
-                break
+                high = mid
+
         ## end binary search , mid as the result index
 
+
+        ## If the event date is not in the price file return error informatino
         if eDate != datetime.datetime.strptime(prices[mid][0], "%Y-%m-%d"):
-            with open('data/cases_error_log' + '.csv', 'a') as logfile:
-                logs = csv.writer(logfile)
-                logs.writerow([compCode, eDate.date().isoformat(), "stock_rr_error" , "between: " + str(begin) + " - " + str(end) + ". Event date: " + eDate.date().isoformat() + " does not exist in price file"])
-                print "LOG===stkr===" + eDate.date().isoformat() + " for " + compCode + " does not exist in its price file"
-            return []
+            ## stock_rr error information format [ticker, eDate, [Begin, end), error description]
+            errorlog = []
+            errorlog.append(compCode)
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("the Event Date does not exist in its price file")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
+
+
+
+        # verify enough data for estimation
+        if mid + begin < 0 or mid + end > len(prices) :
+            errorlog = []
+            errorlog.append(compCode)
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("Not enough price data for this duration")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
 
 
 
         ## retrieve the result estimation window
         estwin_price = []
-        # verify enough data for estimation
-        if mid + begin < 1 or mid + end > len(prices) :
-            with open('data/cases_error_log' + '.csv', 'a') as logfile:
-                logs = csv.writer(logfile)
-                logs.writerow([compCode, eDate.date().isoformat(), "stock_rr_error", "between: " + str(begin) + " - " + str(end) + " not enough data"])
-                print "LOG===stkr=== not enough data for company " + compCode + " on event :" + eDate.date().isoformat() + " Win: " + str(begin) + " - " + str(end)
-            return []
-        # end verification
 
-
-        #retrieve the adjusted close prices
-        for i in range(begin-1, end) :
+        ## retrieve the adjusted close prices
+        for i in range(begin, end) :
             if prices[mid + i][5] != "null":
                 estwin_price.append(float(prices[mid + i][5]))
             else:
@@ -132,26 +137,38 @@ def stock_rr(compCode, eDate, begin, end) :
 
         pos0 = [i for i, x in enumerate(estwin_price) if x == 0]
 
+        ## Return error if there are 0 prices in the duration
         if len(pos0) != 0:
+            errorlog = []
+            errorlog.append(compCode)
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+
+            errordes = ""
             for i in pos0:
-                with open('data/cases_error_log' + '.csv', 'a') as logfile:
-                    logs = csv.writer(logfile)
-                    logs.writerow([compCode, eDate.date().isoformat(), "stock_rr_error","between: " + str(begin) + " - " + str(end) + prices[mid + i + begin - 1 ][0] + " price is null"])
-                    print "LOG===stkr===" + compCode +" " + eDate.date().isoformat() +" between: " + str(begin) + " - " + str(end) + prices[mid + i + begin - 1 ][0] + " price is null"
-            return []
+                errordes += "Zero Price error, " + prices[mid + i + begin][0] + " price is : " + prices[mid + i + begin][5] + " | "
+            errorlog.append(errordes)
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
 
         #retrieve the return rate
         estwin_rr = []
         for i in range(1, len(estwin_price)) :
             estwin_rr.append(math.log(estwin_price[i]/estwin_price[i-1]))
-            #estwin_rr.append( (estwin_price[i] - estwin_price[i-1])/estwin_price[i-1] )
+            #  another algorithm : estwin_rr.append( (estwin_price[i] - estwin_price[i-1])/estwin_price[i-1] )
 
+
+        ## Return error if the prices are constant in the duration
         if sum(estwin_rr)==0:
-            with open('data/cases_error_log' + '.csv', 'a') as logfile:
-                logs = csv.writer(logfile)
-                logs.writerow([compCode, eDate.date().isoformat(), "stock_rr_error", "between: " + str(begin) + " - " + str(end) + " price constant changes in the period" ])
-                print "LOG===stkr===" + compCode +" " + eDate.date().isoformat() +" between: " + str(begin) + " - " + str(end) + " price constant, not useful"
-                return []
+            errorlog = []
+            errorlog.append(compCode)
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("Prices are constant in this duration, not useful")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
 
         return estwin_rr
 
@@ -167,25 +184,26 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
     estwin_rr = stock_rr(compCode, eDate, estbegin, estend)
 
     evtwin_rr = stock_rr(compCode, eDate, evtbegin, evtend)
-    #SPY as SP500 rates
-    spy_rr = stock_rr('SPY', eDate, estbegin, estend)
 
-    if len(estwin_rr)==0 or len(evtwin_rr)==0 :
-        return ["Error case", compCode, eDate.date().isoformat(), 0, 0]
+    #SPY as SP500 rates
+    spy_est_rr = stock_rr('SPY', eDate, estbegin, estend)
+
+    spy_evt_rr = stock_rr('SPY', eDate, evtbegin, evtend)
+
+    if len(estwin_rr)==1 or len(evtwin_rr)==1 or len(spy_est_rr)==1 or len(spy_evt_rr)==1:
+        return ["ERROR_CASE"]
+
 
     #CAPM regression with spy_rates and estwin rates
-    beta = sum(map(operator.mul, map(lambda i: i-sum(estwin_rr)/len(estwin_rr), estwin_rr), map(lambda i: i-sum(spy_rr)/len(spy_rr), spy_rr))) / sum(map(lambda i: i*i, map(lambda i: i-sum(spy_rr)/len(spy_rr), spy_rr)))
-    alpha = sum(estwin_rr)/len(estwin_rr) - beta*sum(spy_rr)/len(spy_rr)
+    beta = sum(map(operator.mul, map(lambda i: i-sum(estwin_rr)/len(estwin_rr), estwin_rr), map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr))) / sum(map(lambda i: i*i, map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr)))
+    alpha = sum(estwin_rr)/len(estwin_rr) - beta*sum(spy_est_rr)/len(spy_est_rr)
 
     #RSE
-    res = (sum(map(lambda i:i*i, map(operator.sub, map(lambda i: i-alpha, estwin_rr), map(lambda i:i*beta, spy_rr)))) / (len(estwin_rr)-2))**0.5
+    res = (sum(map(lambda i:i*i, map(operator.sub, map(lambda i: i-alpha, estwin_rr), map(lambda i:i*beta, spy_est_rr)))) / (len(estwin_rr)-2))**0.5
     #AR
-    ab_re = map(operator.sub, evtwin_rr, map(lambda i:i*beta+alpha, stock_rr('SPY', eDate, evtbegin, evtend)))
+    ab_re = map(operator.sub, evtwin_rr, map(lambda i:i*beta+alpha, spy_evt_rr))
     #CAR/sigma
     ab_re_std = sum(ab_re) / (res * (evtend-evtbegin)**0.5 )
-
-    #print (-0.021/-0.85)/pow(5,0.5)
-    #print stock_rr('SPY', eDate, evtbegin, evtend)
 
     return [compCode, eDate.date().isoformat(), sum(ab_re), ab_re_std]
 ################################END_Abnormal Return calculator###################################################
