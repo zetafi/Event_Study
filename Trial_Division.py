@@ -150,7 +150,7 @@ def trial_beneficiary_valid():
 ## TV4 is the combination of TV2 and TV3
 ## COL9 is "Stock_Ticker". COL10 is "Company_Name" COL34 is "remedies_against". COL35 is "remedies_beneficiary". COL38 is "remedies_date"
 ## 472 items for beneficiary     305 items for non-beneficiary    763 items in total
-def T2_T3_T4_trial_benefit():
+def TV2_TV3_TV4_trial_benefit():
     # filings are too long, add this line to avoid error when reading the csv
     csv.field_size_limit(sys.maxsize)
 
@@ -451,7 +451,7 @@ def T7_T8_trial_jury_bench():
 ## COL9 is "Stock_Ticker". COL27 is "case url". COL28 is "filing_dates". COL29 is "filing_descriptions". COL38 is "remedies_date"
 ## The result file is in "data/Trial/TV9_trial_valid_jury.csv"   Total: 100(104) items
 ## The result file is in "data/Trial/TV10_trial_valid_bench.csv"   Total: 635(668) items
-def T9_T10_trial_valid_jury():
+def TV9_TV10_trial_valid_jury():
     # filings are too long, add this line to avoid error when reading the csv
     csv.field_size_limit(sys.maxsize)
 
@@ -555,3 +555,14 @@ def T9_T10_trial_valid_jury():
 
         print ["Trial valid jury decisions : ", len(juryresult)]
         print ["Trial valid bench decisions : ", len(benchresult)]
+
+
+def main_trial():
+    all_complete_trial_data()
+    T1_trial_all()
+    trial_beneficiary_valid()
+    TV2_TV3_TV4_trial_benefit()
+    T5_trial_100th()
+    TV6_trial_valid_100th()
+    T7_T8_trial_jury_bench()
+    TV9_TV10_trial_valid_jury()

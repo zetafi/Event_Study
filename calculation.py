@@ -94,8 +94,9 @@ def stock_rr(compCode, eDate, begin, end) :
                 low = mid
             elif eDate < datetime.datetime.strptime(prices[mid][0], "%Y-%m-%d") :
                 high = mid
-
+        mid = low
         ## end binary search , mid as the result index
+
 
 
         ## If the event date is not in the price file return error informatino
@@ -174,10 +175,13 @@ def stock_rr(compCode, eDate, begin, end) :
 
 ################################END Ratio calculator###################################################
 
+#print stock_rr('MMM', datetime.datetime(2009, 1, 20), -60, -30)
+
 #Fun3
 ################################Abnormal Return calculator###################################################
-##input: compCode, EventDate, EstWin start/end, EvtWin start/end
-##return:[comp name, event date, car, car/sigma]
+## Input: compCode, EventDate, EstWin start/end, EvtWin start/end
+## return:[comp name, event date, car, car/sigma] if no error
+## return list of length 5 with first one a string "ERROR_CASE"
 def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
 
     #Estimation window rates
@@ -190,9 +194,32 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
 
     spy_evt_rr = stock_rr('SPY', eDate, evtbegin, evtend)
 
-    if len(estwin_rr)==1 or len(evtwin_rr)==1 or len(spy_est_rr)==1 or len(spy_evt_rr)==1:
-        return ["ERROR_CASE"]
+    if len(estwin_rr) == 1 or len(evtwin_rr) == 1 or len(spy_est_rr) == 1 or len(spy_evt_rr) == 1:
 
+        errorinfo = []
+        errorinfo.append("ERROR_CASE")
+
+        if len(estwin_rr) == 1:
+            errorinfo.append(estwin_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evtwin_rr) == 1:
+            errorinfo.append(evtwin_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(spy_est_rr) == 1:
+            errorinfo.append(spy_est_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(spy_est_rr) == 1:
+            errorinfo.append(spy_evt_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        return errorinfo
 
     #CAPM regression with spy_rates and estwin rates
     beta = sum(map(operator.mul, map(lambda i: i-sum(estwin_rr)/len(estwin_rr), estwin_rr), map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr))) / sum(map(lambda i: i*i, map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr)))
@@ -208,19 +235,34 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
     return [compCode, eDate.date().isoformat(), sum(ab_re), ab_re_std]
 ################################END_Abnormal Return calculator###################################################
 
+#abnormalRe("")
 
 
 #Fun4
 ################################CAR calculator###################################################
-##input: EstWin start/end, EvtWin start/end, filename
-##return:filename+_EvtW**to**_EstW**to**
-def car_calculation(estWinl, estWinh, evtWinl, evtWinh, resultfname):
-    with open('data/' + resultfname + '.csv', 'rb') as csvfile:
+## Input: EstWin start/end, EvtWin start/end, filename
+## Return:
+def car_calculation(estWinl, estWinh, evtWinl, evtWinh, fpath):
+    filename = fpath.replace("Trial/", "")
+    filename = filename.replace("Appellate/", "")
+    tableindex = filename.index("_")
+    tblname = filename[:tableindex]
+    tblnres = filename[tableindex:]
+    direct = ""
+
+    if tblname[0] == "T":
+        direct = "Trial/"
+    else:
+        direct = "Appellate/"
+
+    with open("data/" + fpath + '.csv', 'rb') as csvfile:
         data = csv.reader(csvfile)
         header = next(data)
 
-        with open("data/" + resultfname + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(
-                estWinl) + "to" + str(estWinh) + ".csv", "w") as resultfile:
+        if not os.path.isdir("data/Trial/CAR"):
+            os.mkdir("data/Trial/CAR")
+
+        with open("data/" + direct + "CAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(estWinl) + "," + str(estWinh) + tblnres + ".csv", "w") as resultfile:
             writer = csv.writer(resultfile)
             writer.writerow([header[0], header[1], "CAR", "CAR/Sigma"])
 
@@ -229,34 +271,26 @@ def car_calculation(estWinl, estWinh, evtWinl, evtWinh, resultfname):
                 eDate = datetime.datetime.strptime(row[1], "%B %d, %Y")
 
                 liste = abnormalRe(compCode, eDate, estWinl, estWinh, evtWinl, evtWinh)
-                print liste
-                writer.writerow(liste)
+                if liste[0] == "ERROR_CASE":
+                    with open("data/" + direct + "CAR/ERROR_FILE_" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
+                            estWinl) + "," + str(estWinh) + ".csv", "a") as errorfile:
+                        errorwriter = csv.writer(errorfile)
+                        for i in range(1,5):
+                            if liste[i] != "No_problem":
+                                #print len(liste[i])
+                                errorwriter.writerow(liste[i].split("@"))
+                else:
+                    print liste
+                    writer.writerow(liste)
+
 ################################END_CAR calculator###################################################
 
-
-def clean_error(estWinl, estWinh, evtWinl, evtWinh, resultfname):
-    with open('data/' + resultfname + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(estWinl) + "to" + str(
-            estWinh) + '.csv', 'rb') as csvfile:
-        cars = csv.reader(csvfile)
-
-        for row in cars:
-            if row[0] == "Error case":
-                with open("data/result/cases_error" + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(
-                        estWinl) + "to" + str(estWinh) + ".csv", "a") as resultfile:
-                    writer = csv.writer(resultfile)
-                    writer.writerow(row)
-            else:
-                with open("data/result/cases_no_error" + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(
-                        estWinl) + "to" + str(estWinh) + ".csv", "a") as resultfile:
-                    writer = csv.writer(resultfile)
-                    writer.writerow(row)
-
+#car_calculation(-60, -30, -5, 0, "Trial/TV10_trial_valid_bench")
 
 
 
 
 def mc_car(estWinl, estWinh, evtWinl, evtWinh, type):
-
     mcrep = 100000
 
     with open('data/result/cases_no_error' + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(estWinl) + "to" + str(
@@ -305,9 +339,14 @@ def mc_car(estWinl, estWinh, evtWinl, evtWinh, type):
 
 
 
-def main_process(estWinl, estWinh, evtWinl, evtWinh, resultfname):
-    car_calculation(estWinl, estWinh, evtWinl, evtWinh, resultfname)
-    clean_error(estWinl, estWinh, evtWinl, evtWinh, resultfname)
+def main_process(estWinl, estWinh, resultfname):
+    car_calculation(estWinl, estWinh, resultfname)
+
+    ##for four event window
+    evtWinl = -5
+    evtWinh = 0
+
+
 
     ############mean car
     with open('data/result/cases_no_error' + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(estWinl) + "to" + str(
@@ -340,10 +379,4 @@ def main_process(estWinl, estWinh, evtWinl, evtWinh, resultfname):
 
 #main_process(-60,-30,-5,0,"trial_consistent_dates")
 
-main_process(-60,-30,-5,0,"trial_consistent_dates_100th")
-
-
-#car_calculation(-60, -30, -5, 0, "APP")
-#clean_error(-60, -30, -5, 0, "APP")
-#main_process(-60,-30,-5,0,"apt_opt_final", "APP")
-
+#main_process(-60,-30,-5,0,"trial_consistent_dates_100th")

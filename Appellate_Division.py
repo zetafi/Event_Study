@@ -39,8 +39,10 @@ def all_appellate_data():
 
 
 
-
-def exploring_ap():
+#1056
+#614 affirmed
+#442 nonaffirmed
+def A1_A2_A3_appellate_all_and_division():
     # filings are too long, add this line to avoid error when reading the csv
     csv.field_size_limit(sys.maxsize)
 
@@ -48,10 +50,12 @@ def exploring_ap():
         apdata = csv.reader(csvfile)
         header = apdata.next()
 
-        count = 0
-        result = []
+
+        resultaffirm = []
+        resultnonaffirm = []
 
         keyword = "The judgment or decision is: "
+
 
         for row in apdata:
             tdate = datetime.datetime.strptime(row[25], "%m/%d/%Y").date().strftime("%B %-d, %Y")
@@ -66,82 +70,81 @@ def exploring_ap():
 
 
 
-            # if "OPINION and JUDGMENT filed" in row[28]:
-            #     for ind in range(len(filings)):
-            #         filings[ind] = filings[ind].replace("The j decision is:", "The judgment or decision is:")
-            #
-            #         cond = ("OPINION and JUDGMENT filed" in filings[ind]) \
-            #                and ("The judgment or decision is:" in filings[ind]) \
-            #                and not ("This entry was made in error" in filings[ind])
-            #
-            #         if cond:
-            #             count += 1
-            #             judgement = filings[ind]
-            #             findindex = judgement.find(keyword)
-            #             resbegin = findindex + len(keyword)
-            #             resend = judgement.find(".", resbegin, resbegin + 240)
-            #             judgresult = judgement[int(resbegin):int(resend)]
-            #
-            #
-            #
-            #
-            #             ##dates fdates[ind]
-            #             # if tdate != fdates[ind]:
-            #             #     print row[26]
-            #             #     print judgresult
-            #             #     print [tdate, fdates[ind]]
-            #             #print judgement
-            #             result.append(judgresult)
+            if "OPINION and JUDGMENT filed" in row[28]:
+                for ind in range(len(filings)):
 
+                    filings[ind] = filings[ind].replace("The j decision is:", "The judgment or decision is:")
 
+                    # 1 exception for judgment or decision
+                    # 1 exception for entry was made in error
+                    cond = ("OPINION and JUDGMENT filed" in filings[ind]) \
+                           and ("The judgment or decision is:" in filings[ind]) \
+                           and not ("This entry was made in error" in filings[ind])
 
-            if "OPINION and JUDGMENT filed" not in row[28]:
-            #else:
+                    if cond:
+                        judgement = filings[ind]
+                        findindex = judgement.find(keyword)
+                        resbegin = findindex + len(keyword)
+                        resend = judgement.find(".", resbegin, resbegin + 240)
+                        judgresult = judgement[int(resbegin):int(resend)]
+                        if judgresult == "Affirmed" or judgresult == "affirmed":
+                            resultaffirm.append(row[8] + "@" + fdates[ind])
+                        else:
+                            resultnonaffirm.append(row[8] + "@" + fdates[ind])
+
+            else:
                 evtfilings = ""
+
                 for ind in range(len(filings)):
                     if fdates[ind] == tdate:
                         evtfilings += filings[ind] + " | "
 
                 cond = ("ORDER" in evtfilings) and (
-                ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
-                or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
-                or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
+                    ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
+                    or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
+                    or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
                     "REVERSE" in evtfilings)
-                or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings)) \
-                       and not (("dismiss" in evtfilings) or ("terminat" in evtfilings))
-
+                    or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings)) \
+                    and not (("dismiss" in evtfilings) or ("terminat" in evtfilings))
 
                 if cond :
+                    if "affirm" in evtfilings:
+                        resultaffirm.append(row[8] + "@" + tdate)
+                    else:
+                        resultnonaffirm.append(row[8] + "@" + tdate)
 
-                    ###dates  terminated date
+        resultall = resultaffirm + resultnonaffirm
 
+        with open("data/Appellate/A1_appellate_all.csv", 'w') as resultfile1:
+            writer = csv.writer(resultfile1)
+            writer.writerow(["Stock_Ticker", "Decision_Date"])
 
-                    #if "affirm" in evtfilings:
-                    count += 1
-                    evtfilings2 = ""
-                    num = 0
-                    for ind in range(len(fdates)):
-                        if "ORDER" in filings[ind]:
-                            num += 1
-                            evtfilings2 += filings[ind] + " | "
-                    print row[26]
-                    print evtfilings2
-                    print num
+            for elem in resultall:
+                writer.writerow(elem.split("@"))
 
-        print count
+        with open("data/Appellate/A2_appellate_affirmed.csv", 'w') as resultfile2:
+            writer = csv.writer(resultfile2)
+            writer.writerow(["Stock_Ticker", "Decision_Date"])
 
+            for elem in resultaffirm:
+                writer.writerow(elem.split("@"))
 
+        with open("data/Appellate/A3_appellate_nonaffirmed.csv", 'w') as resultfile3:
+            writer = csv.writer(resultfile3)
+            writer.writerow(["Stock_Ticker", "Decision_Date"])
 
-
-
-
-
-
-
-
-
-
+            for elem in resultnonaffirm:
+                writer.writerow(elem.split("@"))
 
 
+        print ["All appellate data : ", len(resultall)]
+        print ["Appellate with affirmed decision : ", len(resultaffirm)]
+        print ["Appellate with not totally affirmed decision : ", len(resultnonaffirm)]
 
-exploring_ap()
+
+A1_A2_A3_appellate_all_and_division()
+
+
+def main_appellate():
+    all_appellate_data()
+    A1_A2_A3_appellate_all_and_division()
