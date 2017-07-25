@@ -7,6 +7,10 @@ import operator
 import csv
 import os
 import random
+from glob import glob
+import bisect
+import numpy as np
+
 
 
 #Fun1
@@ -125,7 +129,6 @@ def stock_rr(compCode, eDate, begin, end) :
             return [error]
 
 
-
         ## retrieve the result estimation window
         estwin_price = []
 
@@ -153,6 +156,7 @@ def stock_rr(compCode, eDate, begin, end) :
             error = "@".join(errorlog)
             return [error]
 
+
         #retrieve the return rate
         estwin_rr = []
         for i in range(1, len(estwin_price)) :
@@ -171,18 +175,86 @@ def stock_rr(compCode, eDate, begin, end) :
             error = "@".join(errorlog)
             return [error]
 
+        #print [prices[mid+begin][0], prices[mid+end][0],begin,end]
+
         return estwin_rr
 
 ################################END Ratio calculator###################################################
 
-#print stock_rr('MMM', datetime.datetime(2009, 1, 20), -60, -30)
+#print len(stock_rr('YHOO', datetime.datetime(2010, 04, 29), -60, -30))
+
+def factor_get(eDate, begin, end, type):
+    with open('data/factors.csv', 'rb') as csvfile:
+        factors = csv.reader(csvfile)
+        header = next(factors)
+        factors = list(factors)
+
+        if type not in header:
+            errorlog = []
+            errorlog.append("FACTOR_ERROR")
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("type: " + type)
+            errorlog.append(" type does not exist!")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
+
+        ## binary search for the index of the event day
+        low = 0
+        high = len(factors) - 1
+        mid = (low + high) / 2
+        while (high - low) > 1:
+            mid = (low + high) / 2
+            if datetime.datetime.strptime(factors[mid][0].replace(",",""), "%Y%m%d") <= eDate:
+                low = mid
+            elif eDate < datetime.datetime.strptime(factors[mid][0].replace(",",""), "%Y%m%d"):
+                high = mid
+        mid = low
+        ## end binary search , mid as the result index
+        if eDate != datetime.datetime.strptime(factors[mid][0].replace(",",""), "%Y%m%d"):
+            errorlog = []
+            errorlog.append("FACTOR_ERROR")
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("TYPE: " + type)
+            errorlog.append("the Event Date does not exist in the factor file")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
+
+        if mid + begin < 0 or mid + end > len(factors) :
+            errorlog = []
+            errorlog.append("FACTOR_ERROR")
+            errorlog.append(eDate.date().isoformat())
+            errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+            errorlog.append("TYPE: " + type)
+            errorlog.append("Not enough factors data for this duration")
+            print errorlog
+            error = "@".join(errorlog)
+            return [error]
+
+        #print [factors[mid+begin][0], factors[mid+end][0], begin, end]
+
+        result_factor = []
+        ntype = -1
+        for t in range(4):
+            if type == header[t]:
+                ntype = t
+
+        for i in range(begin+1, end):
+            result_factor.append(float(factors[mid+i][ntype]))
+        return result_factor
+
+
+#print factor_get(datetime.datetime(2009, 1, 20), -60, -30, "HML")
 
 #Fun3
 ################################Abnormal Return calculator###################################################
 ## Input: compCode, EventDate, EstWin start/end, EvtWin start/end
 ## return:[comp name, event date, car, car/sigma] if no error
 ## return list of length 5 with first one a string "ERROR_CASE"
-def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
+def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend, bs) :
 
     #Estimation window rates
     estwin_rr = stock_rr(compCode, eDate, estbegin, estend)
@@ -221,72 +293,290 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend) :
 
         return errorinfo
 
-    #CAPM regression with spy_rates and estwin rates
+    # CAPM regression with spy_rates and estwin rates
     beta = sum(map(operator.mul, map(lambda i: i-sum(estwin_rr)/len(estwin_rr), estwin_rr), map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr))) / sum(map(lambda i: i*i, map(lambda i: i-sum(spy_est_rr)/len(spy_est_rr), spy_est_rr)))
     alpha = sum(estwin_rr)/len(estwin_rr) - beta*sum(spy_est_rr)/len(spy_est_rr)
 
-    #RSE
+    # RSE
     res = (sum(map(lambda i:i*i, map(operator.sub, map(lambda i: i-alpha, estwin_rr), map(lambda i:i*beta, spy_est_rr)))) / (len(estwin_rr)-2))**0.5
-    #AR
+    # AR
     ab_re = map(operator.sub, evtwin_rr, map(lambda i:i*beta+alpha, spy_evt_rr))
-    #CAR/sigma
-    ab_re_std = sum(ab_re) / (res * (evtend-evtbegin)**0.5 )
+    # CAR/sigma
+    ab_re_std = sum(ab_re) / (res * (evtend-evtbegin-1)**0.5 )
 
-    return [compCode, eDate.date().isoformat(), sum(ab_re), ab_re_std]
+
+
+    # Bootstrap CAR calculation
+    ar_est = map(operator.sub, map(lambda i: i - alpha, estwin_rr), map(lambda i: i * beta, spy_est_rr))
+    car_mc = []
+    pval = -1
+    if bs:
+        for bs in range(0, 100000):
+            car = float(0)
+            for count in range(0, evtend - evtbegin - 1):
+                car += random.choice(ar_est)
+            car_mc.append(car)
+        car_mc.sort()
+
+        pval = float(bisect.bisect_left(car_mc, sum(ab_re)))
+        pval /= 100000
+
+    return [compCode, eDate.date().isoformat(), sum(ab_re), ab_re_std, pval]
 ################################END_Abnormal Return calculator###################################################
 
-#abnormalRe("")
+def abnormal_return_mf(compCode, eDate, estbegin, estend, evtbegin, evtend):
+    # Estimation window rates
+    estwin_rr = stock_rr(compCode, eDate, estbegin, estend)
+
+    evtwin_rr = stock_rr(compCode, eDate, evtbegin, evtend)
+
+    # Rf   Rm-Rf   SMB    HML
+    est_Rf = factor_get(eDate, estbegin, estend, "RF")
+    est_Rm_Rf = factor_get(eDate, estbegin, estend, "Mkt-RF")
+    est_SMB = factor_get(eDate, estbegin, estend, "SMB")
+    est_HML = factor_get(eDate, estbegin, estend, "HML")
+
+    evt_Rf = factor_get(eDate, evtbegin, evtend, "RF")
+    evt_Rm_Rf = factor_get(eDate, evtbegin, evtend, "Mkt-RF")
+    evt_SMB = factor_get(eDate, evtbegin, evtend, "SMB")
+    evt_HML = factor_get(eDate, evtbegin, evtend, "HML")
+
+    if len(estwin_rr) == 1 or len(evtwin_rr) == 1 or len(est_Rf) == 1 or len(evt_Rf) == 1 \
+            or len(est_Rm_Rf) == 1 or len(evt_Rm_Rf) == 1 \
+            or len(est_SMB) == 1 or len(evt_SMB) == 1 \
+            or len(est_HML) == 1 or len(evt_HML) == 1:
+
+        errorinfo = []
+        errorinfo.append("ERROR_CASE")
+
+        if len(estwin_rr) == 1:
+            errorinfo.append(estwin_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evtwin_rr) == 1:
+            errorinfo.append(evtwin_rr[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(est_Rf) == 1:
+            errorinfo.append(est_Rm_Rf[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evt_Rf) == 1:
+            errorinfo.append(evt_Rm_Rf[0])
+        else:
+            errorinfo.append("No_problem")
+        if len(est_Rm_Rf) == 1:
+            errorinfo.append(est_Rm_Rf[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evt_Rm_Rf) == 1:
+            errorinfo.append(evt_Rm_Rf[0])
+        else:
+            errorinfo.append("No_problem")
+        if len(est_SMB) == 1:
+            errorinfo.append(est_SMB[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evt_SMB) == 1:
+            errorinfo.append(evt_SMB[0])
+        else:
+            errorinfo.append("No_problem")
+        if len(est_HML) == 1:
+            errorinfo.append(est_HML[0])
+        else:
+            errorinfo.append("No_problem")
+
+        if len(evt_HML) == 1:
+            errorinfo.append(evt_HML[0])
+        else:
+            errorinfo.append("No_problem")
+
+        return errorinfo
+
+    ## Multifactor model
+    #print len(estwin_rr)
+    #print len(est_Rf)
+    #print compCode
+    #print eDate
+    Y = map(operator.sub, estwin_rr, est_Rf)
+    X = [[1]*(estend-estbegin-1), est_Rm_Rf, est_SMB, est_HML]
+
+
+    Y = np.matrix(Y).getT()
+    X = np.matrix(X).getT()
+
+
+    #print Y
+    BETA = (((X.getT().dot(X)).getI()).dot(X.getT())).dot(Y)
+
+    RES = Y - X.dot(BETA)
+
+
+    # RSE
+    SDRES = ((RES.getT().dot(RES))/(len(estwin_rr)-4))[0,0] ** 0.5
+
+    # AR
+    AB_RE = np.matrix(evtwin_rr).getT() - np.matrix(evt_Rf).getT() \
+            - (np.matrix([[1]*(evtend-evtbegin-1), evt_Rm_Rf, evt_SMB, evt_HML]).getT()).dot(BETA)
+
+    # CAR
+    CAR = AB_RE.sum()
+    # CAR/sigma
+    AB_RE_STD = CAR / (SDRES * ((evtend - evtbegin-1) ** 0.5))
+
+    return [compCode, eDate.date().isoformat(), CAR, AB_RE_STD]
+
+
 
 
 #Fun4
 ################################CAR calculator###################################################
 ## Input: EstWin start/end, EvtWin start/end, filename
 ## Return:
-def car_calculation(estWinl, estWinh, evtWinl, evtWinh, fpath):
-    filename = fpath.replace("Trial/", "")
-    filename = filename.replace("Appellate/", "")
+def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = False):
+    filename = fpath.replace("data/Trial/", "")
+    filename = filename.replace("data/Appellate/", "")
     tableindex = filename.index("_")
     tblname = filename[:tableindex]
     tblnres = filename[tableindex:]
     direct = ""
+
+    count = 0
 
     if tblname[0] == "T":
         direct = "Trial/"
     else:
         direct = "Appellate/"
 
-    with open("data/" + fpath + '.csv', 'rb') as csvfile:
+    with open(fpath, 'rb') as csvfile:
         data = csv.reader(csvfile)
         header = next(data)
 
-        if not os.path.isdir("data/Trial/CAR"):
-            os.mkdir("data/Trial/CAR")
+        if mf:
+            if not os.path.isdir("data/Trial/MFCAR"):
+                os.mkdir("data/Trial/MFCAR")
+            with open("data/" + direct + "MFCAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
+                    estWinl) + "," + str(estWinh) + tblnres, "w") as resultfile:
+                writer = csv.writer(resultfile)
+                writer.writerow([header[0], header[1], "MFCAR", "MFCAR/Sigma"])
 
-        with open("data/" + direct + "CAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(estWinl) + "," + str(estWinh) + tblnres + ".csv", "w") as resultfile:
-            writer = csv.writer(resultfile)
-            writer.writerow([header[0], header[1], "CAR", "CAR/Sigma"])
+                for row in data:
+                    compCode = row[0]
+                    eDate = datetime.datetime.strptime(row[1], "%B %d, %Y")
 
-            for row in data:
-                compCode = row[0]
-                eDate = datetime.datetime.strptime(row[1], "%B %d, %Y")
+                    liste = abnormal_return_mf(compCode, eDate, estWinl, estWinh, evtWinl, evtWinh)
+                    if liste[0] == "ERROR_CASE":
+                        with open("data/" + direct + "MFCAR/ERROR_FILE_" + tblname + "_[" + str(evtWinl) + "," + str(
+                                evtWinh) + ")_EstWin" + str(
+                                estWinl) + "," + str(estWinh) + ".csv", "a") as errorfile:
+                            errorwriter = csv.writer(errorfile)
+                            for i in range(1, len(liste)):
+                                if liste[i] != "No_problem":
+                                    # print liste[i]
+                                    errorwriter.writerow(liste[i].split("@"))
+                    else:
+                        count += 1
+                        print liste
+                        writer.writerow(liste)
+            print ["MFCAR File:" + tblname, count]
+        else:
+            if not os.path.isdir("data/Trial/CAR"):
+                os.mkdir("data/Trial/CAR")
 
-                liste = abnormalRe(compCode, eDate, estWinl, estWinh, evtWinl, evtWinh)
-                if liste[0] == "ERROR_CASE":
-                    with open("data/" + direct + "CAR/ERROR_FILE_" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
-                            estWinl) + "," + str(estWinh) + ".csv", "a") as errorfile:
-                        errorwriter = csv.writer(errorfile)
-                        for i in range(1,5):
-                            if liste[i] != "No_problem":
-                                #print len(liste[i])
-                                errorwriter.writerow(liste[i].split("@"))
-                else:
-                    print liste
-                    writer.writerow(liste)
+            with open("data/" + direct + "CAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
+                    estWinl) + "," + str(estWinh) + tblnres, "w") as resultfile:
+                writer = csv.writer(resultfile)
+                writer.writerow([header[0], header[1], "CAR", "CAR/Sigma", "Bootsratp p-value"])
+
+                for row in data:
+                    compCode = row[0]
+                    eDate = datetime.datetime.strptime(row[1], "%B %d, %Y")
+
+                    liste = abnormalRe(compCode, eDate, estWinl, estWinh, evtWinl, evtWinh, bs)
+                    if liste[0] == "ERROR_CASE":
+                        with open("data/" + direct + "CAR/ERROR_FILE_" + tblname + "_[" + str(evtWinl) + "," + str(
+                                evtWinh) + ")_EstWin" + str(
+                                estWinl) + "," + str(estWinh) + ".csv", "a") as errorfile:
+                            errorwriter = csv.writer(errorfile)
+                            for i in range(1, len(liste)):
+                                if liste[i] != "No_problem":
+                                    # print liste[i]
+                                    errorwriter.writerow(liste[i].split("@"))
+                    else:
+                        count += 1
+                        print liste
+                        writer.writerow(liste)
+            print ["MFCAR File:" + tblname, count]
+
+
 
 ################################END_CAR calculator###################################################
 
-#car_calculation(-60, -30, -5, 0, "Trial/TV10_trial_valid_bench")
+#car_calculator(-60, -30, -5, 0, glob('data/Trial/T1_*.csv')[0])
+#print os.path.isfile(glob('data/Trial/TV2_*.csv')[0])
 
+
+
+def CAR_total():
+    estWinl = -60
+    estWinh = -30
+    extestWinl = -180
+    extestWinh = -10
+    evtWin1l = -5
+    evtWin1h = 0
+    evtWin2l = -2
+    evtWin2h = 0
+    evtWin3l = -2
+    evtWin3h = 3
+    evtWin4l = 0
+    evtWin4h = 2
+
+    t1path = glob('data/Trial/T1_*.csv')[0]
+    t2path = glob('data/Trial/TV2_*.csv')[0]
+    t3path = glob('data/Trial/TV3_*.csv')[0]
+    t4path = glob('data/Trial/TV4_*.csv')[0]
+    t5path = glob('data/Trial/T5_*.csv')[0]
+    t6path = glob('data/Trial/TV6_*.csv')[0]
+    t7path = glob('data/Trial/T7_*.csv')[0]
+    t8path = glob('data/Trial/T8_*.csv')[0]
+    t9path = glob('data/Trial/TV9_*.csv')[0]
+    t10path = glob('data/Trial/TV10_*.csv')[0]
+
+    a1path = glob('data/Appellate/A1_*.csv')[0]
+    a2path = glob('data/Appellate/A2_*.csv')[0]
+    a3path = glob('data/Appellate/A3_*.csv')[0]
+
+    paths = [t1path, t2path, t3path, t4path, t5path, t6path, t7path, t8path, t9path, t10path, a1path, a2path, a3path]
+
+    # ## normal estimation windows
+    # for path in paths:
+    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
+    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
+    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
+    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
+    #
+    # ## extended estimation windows && Bootstrap CAR for extended windows
+    # for path in paths:
+    #     car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
+
+
+    ## Multifactor Model
+    for path in paths:
+        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
+
+
+CAR_total()
 
 
 
@@ -340,7 +630,7 @@ def mc_car(estWinl, estWinh, evtWinl, evtWinh, type):
 
 
 def main_process(estWinl, estWinh, resultfname):
-    car_calculation(estWinl, estWinh, resultfname)
+    #car_calculation(estWinl, estWinh, resultfname)
 
     ##for four event window
     evtWinl = -5
