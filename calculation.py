@@ -113,7 +113,7 @@ def stock_rr(compCode, eDate, begin, end) :
             errorlog.append("the Event Date does not exist in its price file")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
 
 
@@ -126,7 +126,7 @@ def stock_rr(compCode, eDate, begin, end) :
             errorlog.append("Not enough price data for this duration")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
 
         ## retrieve the result estimation window
@@ -154,7 +154,7 @@ def stock_rr(compCode, eDate, begin, end) :
             errorlog.append(errordes)
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
 
         #retrieve the return rate
@@ -173,7 +173,7 @@ def stock_rr(compCode, eDate, begin, end) :
             errorlog.append("Prices are constant in this duration, not useful")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
         #print [prices[mid+begin][0], prices[mid+end][0],begin,end]
 
@@ -198,7 +198,7 @@ def factor_get(eDate, begin, end, type):
             errorlog.append(" type does not exist!")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR",error]
 
         ## binary search for the index of the event day
         low = 0
@@ -221,7 +221,7 @@ def factor_get(eDate, begin, end, type):
             errorlog.append("the Event Date does not exist in the factor file")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
         if mid + begin < 0 or mid + end > len(factors) :
             errorlog = []
@@ -232,7 +232,7 @@ def factor_get(eDate, begin, end, type):
             errorlog.append("Not enough factors data for this duration")
             print errorlog
             error = "@".join(errorlog)
-            return [error]
+            return ["ERROR", error]
 
         #print [factors[mid+begin][0], factors[mid+end][0], begin, end]
 
@@ -248,6 +248,7 @@ def factor_get(eDate, begin, end, type):
 
 
 #print factor_get(datetime.datetime(2009, 1, 20), -60, -30, "HML")
+
 
 #Fun3
 ################################Abnormal Return calculator###################################################
@@ -266,28 +267,29 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend, bs) :
 
     spy_evt_rr = stock_rr('SPY', eDate, evtbegin, evtend)
 
-    if len(estwin_rr) == 1 or len(evtwin_rr) == 1 or len(spy_est_rr) == 1 or len(spy_evt_rr) == 1:
+    if estwin_rr[0] == "ERROR"  or evtwin_rr[0] == "ERROR" \
+            or spy_est_rr[0] == "ERROR"  or spy_evt_rr[0] == "ERROR":
 
         errorinfo = []
         errorinfo.append("ERROR_CASE")
 
-        if len(estwin_rr) == 1:
-            errorinfo.append(estwin_rr[0])
+        if estwin_rr[0] == "ERROR":
+            errorinfo.append(estwin_rr[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(evtwin_rr) == 1:
-            errorinfo.append(evtwin_rr[0])
+        if evtwin_rr[0] == "ERROR":
+            errorinfo.append(evtwin_rr[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(spy_est_rr) == 1:
-            errorinfo.append(spy_est_rr[0])
+        if spy_est_rr[0] == "ERROR":
+            errorinfo.append(spy_est_rr[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(spy_est_rr) == 1:
-            errorinfo.append(spy_evt_rr[0])
+        if spy_evt_rr[0] == "ERROR":
+            errorinfo.append(spy_evt_rr[1])
         else:
             errorinfo.append("No_problem")
 
@@ -341,58 +343,59 @@ def abnormal_return_mf(compCode, eDate, estbegin, estend, evtbegin, evtend):
     evt_SMB = factor_get(eDate, evtbegin, evtend, "SMB")
     evt_HML = factor_get(eDate, evtbegin, evtend, "HML")
 
-    if len(estwin_rr) == 1 or len(evtwin_rr) == 1 or len(est_Rf) == 1 or len(evt_Rf) == 1 \
-            or len(est_Rm_Rf) == 1 or len(evt_Rm_Rf) == 1 \
-            or len(est_SMB) == 1 or len(evt_SMB) == 1 \
-            or len(est_HML) == 1 or len(evt_HML) == 1:
+    if estwin_rr[0] == "ERROR"  or evtwin_rr[0] == "ERROR" \
+            or est_Rf[0] == "ERROR" or evt_Rf[0] == "ERROR" \
+            or est_Rm_Rf[0] == "ERROR" or evt_Rm_Rf[0] == "ERROR" \
+            or est_SMB[0] == "ERROR" or evt_SMB[0] == "ERROR" \
+            or est_HML[0] == "ERROR" or evt_HML[0] == "ERROR":
 
         errorinfo = []
         errorinfo.append("ERROR_CASE")
 
-        if len(estwin_rr) == 1:
-            errorinfo.append(estwin_rr[0])
+        if estwin_rr[0] == "ERROR":
+            errorinfo.append(estwin_rr[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(evtwin_rr) == 1:
-            errorinfo.append(evtwin_rr[0])
+        if evtwin_rr[0] == "ERROR":
+            errorinfo.append(evtwin_rr[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(est_Rf) == 1:
-            errorinfo.append(est_Rm_Rf[0])
+        if est_Rf[0] == "ERROR":
+            errorinfo.append(est_Rm_Rf[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(evt_Rf) == 1:
-            errorinfo.append(evt_Rm_Rf[0])
+        if evt_Rf[0] == "ERROR":
+            errorinfo.append(evt_Rm_Rf[1])
         else:
             errorinfo.append("No_problem")
-        if len(est_Rm_Rf) == 1:
-            errorinfo.append(est_Rm_Rf[0])
-        else:
-            errorinfo.append("No_problem")
-
-        if len(evt_Rm_Rf) == 1:
-            errorinfo.append(evt_Rm_Rf[0])
-        else:
-            errorinfo.append("No_problem")
-        if len(est_SMB) == 1:
-            errorinfo.append(est_SMB[0])
+        if est_Rm_Rf[0] == "ERROR":
+            errorinfo.append(est_Rm_Rf[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(evt_SMB) == 1:
-            errorinfo.append(evt_SMB[0])
+        if evt_Rm_Rf[0] == "ERROR":
+            errorinfo.append(evt_Rm_Rf[1])
         else:
             errorinfo.append("No_problem")
-        if len(est_HML) == 1:
-            errorinfo.append(est_HML[0])
+        if est_SMB[0] == "ERROR":
+            errorinfo.append(est_SMB[1])
         else:
             errorinfo.append("No_problem")
 
-        if len(evt_HML) == 1:
-            errorinfo.append(evt_HML[0])
+        if evt_SMB[0] == "ERROR":
+            errorinfo.append(evt_SMB[1])
+        else:
+            errorinfo.append("No_problem")
+        if est_HML[0] == "ERROR":
+            errorinfo.append(est_HML[1])
+        else:
+            errorinfo.append("No_problem")
+
+        if evt_HML[0] == "ERROR":
+            errorinfo.append(evt_HML[1])
         else:
             errorinfo.append("No_problem")
 
@@ -477,7 +480,7 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
                             errorwriter = csv.writer(errorfile)
                             for i in range(1, len(liste)):
                                 if liste[i] != "No_problem":
-                                    # print liste[i]
+                                    #print liste[i]
                                     errorwriter.writerow(liste[i].split("@"))
                     else:
                         count += 1
@@ -511,8 +514,9 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
                         count += 1
                         print liste
                         writer.writerow(liste)
+            print "\n\n\n\n\n\n"
             print ["MFCAR File:" + tblname, count]
-
+            print "\n\n\n\n\n\n"
 
 
 ################################END_CAR calculator###################################################
@@ -568,9 +572,16 @@ def CAR_total():
     #     car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
 
 
+    done = [t1path]
+
     ## Multifactor Model
     for path in paths:
-        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+
+        if path in done:
+            pass
+        else:
+            car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+
         car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
         car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
         car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
@@ -579,6 +590,7 @@ def CAR_total():
 CAR_total()
 
 
+#car_calculator(-60, -30, -2, 0, glob('data/Trial/T1_*.csv')[0], True, True)
 
 def mc_car(estWinl, estWinh, evtWinl, evtWinh, type):
     mcrep = 100000
