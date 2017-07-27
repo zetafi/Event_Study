@@ -1,9 +1,4 @@
-# Event_Study
-@UWOsh
-
-
-
-## Explaination for Table Names:
+# Explaination for Table Names:
 * T1  All trial cases
 * T5 All trial cases that remedy amount is greater than $100,000
 * T7 All cases decided by jury
