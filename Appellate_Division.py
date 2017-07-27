@@ -115,6 +115,10 @@ def A1_A2_A3_appellate_all_and_division():
 
         resultall = resultaffirm + resultnonaffirm
 
+        resultaffirm = set(resultaffirm)
+        resultnonaffirm = set(resultnonaffirm)
+        resultall = set(resultall)
+
         with open("data/Appellate/A1_appellate_all.csv", 'w') as resultfile1:
             writer = csv.writer(resultfile1)
             writer.writerow(["Stock_Ticker", "Decision_Date"])

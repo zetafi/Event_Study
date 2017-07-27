@@ -143,7 +143,7 @@ def stock_rr(compCode, eDate, begin, end) :
         estwin_price = []
 
         ## retrieve the adjusted close prices
-        for i in range(begin, end) :
+        for i in range(begin-1, end) :
             if prices[mid + i][5] != "null":
                 estwin_price.append(float(prices[mid + i][5]))
             else:
@@ -313,7 +313,7 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend, bs) :
     # AR
     ab_re = map(operator.sub, evtwin_rr, map(lambda i:i*beta+alpha, spy_evt_rr))
     # CAR/sigma
-    ab_re_std = sum(ab_re) / (res * (evtend-evtbegin-1)**0.5 )
+    ab_re_std = sum(ab_re) / (res * (evtend-evtbegin)**0.5 )
 
 
 
@@ -324,7 +324,7 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend, bs) :
     if bs:
         for bs in range(0, 100000):
             car = float(0)
-            for count in range(0, evtend - evtbegin - 1):
+            for count in range(0, evtend - evtbegin):
                 car += random.choice(ar_est)
             car_mc.append(car)
         car_mc.sort()
@@ -334,6 +334,11 @@ def abnormalRe(compCode, eDate, estbegin, estend, evtbegin, evtend, bs) :
 
     return [compCode, eDate.date().isoformat(), sum(ab_re), ab_re_std, pval]
 ################################END_Abnormal Return calculator###################################################
+
+
+
+print abnormalRe('NOK', datetime.datetime(2014,12,4),-60,-30,-5,0,False)
+
 
 def abnormal_return_mf(compCode, eDate, estbegin, estend, evtbegin, evtend):
     # Estimation window rates
@@ -528,7 +533,7 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
                         print liste
                         writer.writerow(liste)
             print "\n\n\n\n\n\n"
-            print ["MFCAR File:" + tblname, count]
+            print ["CAR File:" + tblname, count]
             print "\n\n\n\n\n\n"
 
 
@@ -544,6 +549,7 @@ def CAR_total():
     estWinh = -30
     extestWinl = -180
     extestWinh = -10
+
     evtWin1l = -5
     evtWin1h = 0
     evtWin2l = -2
@@ -568,33 +574,32 @@ def CAR_total():
     a2path = glob('data/Appellate/A2_*.csv')[0]
     a3path = glob('data/Appellate/A3_*.csv')[0]
 
-    #paths = [t1path, t2path, t3path, t4path, t5path, t6path, t7path, t8path, t9path, t10path, a1path, a2path, a3path]
+    paths = [t1path, t2path, t3path, t4path, t5path, t6path, t7path, t8path, t9path, t10path, a1path, a2path, a3path]
+    #paths = [a1path]
 
-    paths = [t1path]
+
     ## normal estimation windows
-    # for path in paths:
-    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
-    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
-    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
-    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
+    for path in paths:
+        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
+        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
+        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
+        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
 
     ## extended estimation windows && Bootstrap CAR for extended windows
     for path in paths:
         car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
-        #car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
-        #car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
-        #car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
+        car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
+        car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
+        car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
 
 
 
     ## Multifactor Model
-    # for path in paths:
-    #
-    #
-    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
-    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
-    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
-    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
+    for path in paths:
+        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
+        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
 
 
 #CAR_total()

@@ -1,31 +1,25 @@
-ZNGA,2015-11-16,"[0, 2)","Prices are constant in this duration, not useful"
-TWTR,2013-06-21,"[-60, -30)",the Event Date does not exist in its price file
-TWTR,2013-06-21,"[0, 2)",the Event Date does not exist in its price file
-SPY,2013-03-26,"[0, 2)","Prices are constant in this duration, not useful"
-SPY,2013-03-26,"[0, 2)","Prices are constant in this duration, not useful"
-LLNW,2013-04-26,"[0, 2)","Prices are constant in this duration, not useful"
-CTAA,2013-11-25,"[-60, -30)","Prices are constant in this duration, not useful"
-CTAA,2013-11-25,"[0, 2)","Prices are constant in this duration, not useful"
 CTXS,2014-10-14,"[0, 2)","Prices are constant in this duration, not useful"
 MSTR,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
 MSTR,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
 SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
 SPY,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
-MSTR,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
-MSTR,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
-SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
-SPY,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
-ORCL,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
-ORCL,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
-SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
-SPY,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
-ENZ,2015-03-16,"[0, 2)","Prices are constant in this duration, not useful"
-LLNW,2017-02-07,"[0, 2)","Prices are constant in this duration, not useful"
 PHG,2016-07-28,"[0, 2)","Prices are constant in this duration, not useful"
+TWTR,2013-06-21,"[-60, -30)",the Event Date does not exist in its price file
+TWTR,2013-06-21,"[0, 2)",the Event Date does not exist in its price file
 FDC,2015-07-31,"[-60, -30)",the Event Date does not exist in its price file
 FDC,2015-07-31,"[0, 2)",the Event Date does not exist in its price file
-PHG,2016-07-28,"[0, 2)","Prices are constant in this duration, not useful"
+ENZ,2015-03-16,"[0, 2)","Prices are constant in this duration, not useful"
 NUVA,2017-05-31,"[-60, -30)",the Event Date does not exist in its price file
 NUVA,2017-05-31,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-05-31,"[-60, -30)",the Event Date does not exist in its price file
 SPY,2017-05-31,"[0, 2)",the Event Date does not exist in its price file
+LLNW,2017-02-07,"[0, 2)","Prices are constant in this duration, not useful"
+ORCL,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+ORCL,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[0, 2)",the Event Date does not exist in its price file
+SPY,2013-03-26,"[0, 2)","Prices are constant in this duration, not useful"
+ZNGA,2015-11-16,"[0, 2)","Prices are constant in this duration, not useful"
+LLNW,2013-04-26,"[0, 2)","Prices are constant in this duration, not useful"
+CTAA,2013-11-25,"[-60, -30)","Prices are constant in this duration, not useful"
+CTAA,2013-11-25,"[0, 2)","Prices are constant in this duration, not useful"
