@@ -1,0 +1,37 @@
+BSX,2011-05-12,"[-2, 0)","Prices are constant in this duration, not useful"
+MRO,2015-09-04,"[-2, 0)","Prices are constant in this duration, not useful"
+CHSCL,2013-11-25,"[-60, -30)",the Event Date does not exist in its price file
+CHSCL,2013-11-25,"[-2, 0)",the Event Date does not exist in its price file
+ATEN,2012-08-06,"[-60, -30)",the Event Date does not exist in its price file
+ATEN,2012-08-06,"[-2, 0)",the Event Date does not exist in its price file
+MSFT,2009-04-08,"[-2, 0)","Prices are constant in this duration, not useful"
+EXTR,2008-05-30,"[-2, 0)","Prices are constant in this duration, not useful"
+SATS,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SATS,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
+HPQ,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+HPQ,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
+AAPL,2016-12-15,"[-2, 0)","Prices are constant in this duration, not useful"
+CFG,2010-03-26,"[-60, -30)",the Event Date does not exist in its price file
+CFG,2010-03-26,"[-2, 0)",the Event Date does not exist in its price file
+FDC,2010-03-26,"[-60, -30)",the Event Date does not exist in its price file
+FDC,2010-03-26,"[-2, 0)",the Event Date does not exist in its price file
+TDC,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+TDC,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
+BELFA,2012-11-26,"[-2, 0)","Prices are constant in this duration, not useful"
+HPE,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+HPE,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
+CAJ,2017-06-19,"[-60, -30)",the Event Date does not exist in its price file
+CAJ,2017-06-19,"[-2, 0)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-19,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-2, 0)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-2, 0)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-2, 0)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-19,"[-2, 0)",TYPE: HML,the Event Date does not exist in the factor file
+CDW,2010-04-30,"[-60, -30)",the Event Date does not exist in its price file
+CDW,2010-04-30,"[-2, 0)",the Event Date does not exist in its price file
+CDW,2008-11-19,"[-60, -30)",the Event Date does not exist in its price file
+CDW,2008-11-19,"[-2, 0)",the Event Date does not exist in its price file
+BOX,2015-02-13,"[-60, -30)",Not enough price data for this duration

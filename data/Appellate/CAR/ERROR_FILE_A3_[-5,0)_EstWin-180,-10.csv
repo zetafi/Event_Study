@@ -1,0 +1,31 @@
+TWTR,2013-06-21,"[-180, -10)",the Event Date does not exist in its price file
+TWTR,2013-06-21,"[-5, 0)",the Event Date does not exist in its price file
+CTAA,2013-11-25,"[-180, -10)","Prices are constant in this duration, not useful"
+CTAA,2013-11-25,"[-5, 0)","Prices are constant in this duration, not useful"
+MSTR,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+MSTR,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+MSTR,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+MSTR,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+ORCL,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+ORCL,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-180, -10)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-5, 0)",the Event Date does not exist in its price file
+GPRO,2014-12-30,"[-180, -10)",Not enough price data for this duration
+DECK,2017-02-07,"[-180, -10)","Zero Price error, 2016-06-29 price is : null | "
+PHG,2016-07-28,"[-180, -10)","Zero Price error, 2016-06-29 price is : 0.000000 | "
+FDC,2015-07-31,"[-180, -10)",the Event Date does not exist in its price file
+FDC,2015-07-31,"[-5, 0)",the Event Date does not exist in its price file
+PHG,2016-07-28,"[-180, -10)","Zero Price error, 2016-06-29 price is : 0.000000 | "
+SNPS,2017-03-16,"[-180, -10)","Zero Price error, 2016-06-29 price is : null | "
+SNPS,2017-03-16,"[-180, -10)","Zero Price error, 2016-06-29 price is : null | "
+SNPS,2017-03-16,"[-180, -10)","Zero Price error, 2016-06-29 price is : null | "
+NUVA,2017-05-31,"[-180, -10)",the Event Date does not exist in its price file
+NUVA,2017-05-31,"[-5, 0)",the Event Date does not exist in its price file
+SPY,2017-05-31,"[-180, -10)",the Event Date does not exist in its price file
+SPY,2017-05-31,"[-5, 0)",the Event Date does not exist in its price file
+JKHY,2016-10-13,"[-180, -10)","Zero Price error, 2016-06-29 price is : 0.000000 | "
+JKHY,2016-10-13,"[-180, -10)","Zero Price error, 2016-06-29 price is : 0.000000 | "

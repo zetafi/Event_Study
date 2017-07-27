@@ -1,0 +1,36 @@
+CHSCL,2013-11-25,"[-60, -30)",the Event Date does not exist in its price file
+CHSCL,2013-11-25,"[0, 2)",the Event Date does not exist in its price file
+ATEN,2012-08-06,"[-60, -30)",the Event Date does not exist in its price file
+ATEN,2012-08-06,"[0, 2)",the Event Date does not exist in its price file
+SATS,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SATS,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+HPQ,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+HPQ,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+BAX,2009-01-30,"[0, 2)","Prices are constant in this duration, not useful"
+TRV,2013-11-25,"[0, 2)","Prices are constant in this duration, not useful"
+CFG,2010-03-26,"[-60, -30)",the Event Date does not exist in its price file
+CFG,2010-03-26,"[0, 2)",the Event Date does not exist in its price file
+AVX,2016-01-26,"[0, 2)","Prices are constant in this duration, not useful"
+FDC,2010-03-26,"[-60, -30)",the Event Date does not exist in its price file
+FDC,2010-03-26,"[0, 2)",the Event Date does not exist in its price file
+TDC,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+TDC,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+HPE,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+HPE,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
+CAJ,2017-06-19,"[-60, -30)",the Event Date does not exist in its price file
+CAJ,2017-06-19,"[0, 2)",the Event Date does not exist in its price file
+SPY,2017-06-19,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-06-19,"[0, 2)",the Event Date does not exist in its price file
+CDW,2010-04-30,"[-60, -30)",the Event Date does not exist in its price file
+CDW,2010-04-30,"[0, 2)",the Event Date does not exist in its price file
+CDW,2008-11-19,"[-60, -30)",the Event Date does not exist in its price file
+CDW,2008-11-19,"[0, 2)",the Event Date does not exist in its price file
+BOX,2015-02-13,"[-60, -30)",Not enough price data for this duration

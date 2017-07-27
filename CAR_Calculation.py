@@ -75,6 +75,16 @@ def request_prices(ticker):
 ## Output: return a list of one string of the error information separated by @ if error occurs
 def stock_rr(compCode, eDate, begin, end) :
 
+    if compCode in ["PHGL"]:
+        errorlog = []
+        errorlog.append(compCode)
+        errorlog.append(eDate.date().isoformat())
+        errorlog.append("[" + str(begin) + ", " + str(end) + ")")
+        errorlog.append("can\'t get the company price from yahoo finance")
+        print errorlog
+        error = "@".join(errorlog)
+        return ["ERROR", error]
+
     if not os.path.exists("data/prices/" + compCode + ".csv"):
         done = False
         while not done:
@@ -176,7 +186,6 @@ def stock_rr(compCode, eDate, begin, end) :
             return ["ERROR", error]
 
         #print [prices[mid+begin][0], prices[mid+end][0],begin,end]
-
         return estwin_rr
 
 ################################END Ratio calculator###################################################
@@ -463,6 +472,9 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
         if mf:
             if not os.path.isdir("data/Trial/MFCAR"):
                 os.mkdir("data/Trial/MFCAR")
+            if not os.path.isdir("data/Appellate/MFCAR"):
+                os.mkdir("data/Appellate/MFCAR")
+
             with open("data/" + direct + "MFCAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
                     estWinl) + "," + str(estWinh) + tblnres, "w") as resultfile:
                 writer = csv.writer(resultfile)
@@ -490,7 +502,8 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
         else:
             if not os.path.isdir("data/Trial/CAR"):
                 os.mkdir("data/Trial/CAR")
-
+            if not os.path.isdir("data/Appellate/CAR"):
+                os.mkdir("data/Appellate/CAR")
             with open("data/" + direct + "CAR/" + tblname + "_[" + str(evtWinl) + "," + str(evtWinh) + ")_EstWin" + str(
                     estWinl) + "," + str(estWinh) + tblnres, "w") as resultfile:
                 writer = csv.writer(resultfile)
@@ -555,130 +568,33 @@ def CAR_total():
     a2path = glob('data/Appellate/A2_*.csv')[0]
     a3path = glob('data/Appellate/A3_*.csv')[0]
 
-    paths = [t1path, t2path, t3path, t4path, t5path, t6path, t7path, t8path, t9path, t10path, a1path, a2path, a3path]
+    #paths = [t1path, t2path, t3path, t4path, t5path, t6path, t7path, t8path, t9path, t10path, a1path, a2path, a3path]
 
-    # ## normal estimation windows
+    paths = [t1path]
+    ## normal estimation windows
     # for path in paths:
     #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
     #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
     #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
     #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
-    #
-    # ## extended estimation windows && Bootstrap CAR for extended windows
-    # for path in paths:
-    #     car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
-    #     car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
-    #     car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
-    #     car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
+
+    ## extended estimation windows && Bootstrap CAR for extended windows
+    for path in paths:
+        car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
+        #car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
+        #car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
+        #car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
 
 
-    done = [t1path]
 
     ## Multifactor Model
-    for path in paths:
-
-        if path in done:
-            pass
-        else:
-            car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
-
-        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
+    # for path in paths:
+    #
+    #
+    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
 
 
-CAR_total()
-
-
-#car_calculator(-60, -30, -2, 0, glob('data/Trial/T1_*.csv')[0], True, True)
-
-def mc_car(estWinl, estWinh, evtWinl, evtWinh, type):
-    mcrep = 100000
-
-    with open('data/result/cases_no_error' + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(estWinl) + "to" + str(
-            estWinh) + '.csv', 'rb') as csvfile:
-        cars = csv.reader(csvfile)
-        header = next(cars)
-
-
-        sd_cars = []
-
-        abs_cars = 0
-        sq_cars = 0
-
-
-        # retrieve sigma_i
-        for row in cars:
-            sd_cars.append(float(row[2]) / float(row[3]))
-            abs_cars += abs(float(row[2]))
-            sq_cars += float(row[2]) ** 2
-
-        mc_res = []
-        # normal distribution generator
-
-        if type == "abs":
-            for i in range(0, mcrep):
-                abs_car = float(0)
-                for sd in sd_cars:
-                    abs_car += abs(random.gauss(0, sd))
-                mc_res.append(abs_car)
-            mc_res.sort()
-            print ["abs_cars", "90%", "95%", "99%"]
-            print [abs_cars, mc_res[90000], mc_res[95000], mc_res[99000]]
-            print "\n"
-        elif type == "sq":
-            for i in range(0, mcrep):
-                sq_car = float(0)
-                for sd in sd_cars:
-                    sq_car += random.gauss(0, sd)**2
-                mc_res.append(sq_car)
-            mc_res.sort()
-            print ["sq_cars", "90%", "95%", "99%"]
-            print [sq_cars, mc_res[90000], mc_res[95000], mc_res[99000]]
-            print "\n"
-
-
-
-
-
-def main_process(estWinl, estWinh, resultfname):
-    #car_calculation(estWinl, estWinh, resultfname)
-
-    ##for four event window
-    evtWinl = -5
-    evtWinh = 0
-
-
-
-    ############mean car
-    with open('data/result/cases_no_error' + "_EvtW" + str(evtWinl) + "to" + str(evtWinh) + "_EstW" + str(estWinl) + "to" + str(
-            estWinh) + '.csv', 'rb') as csvfile:
-        cars = csv.reader(csvfile)
-        header = next(cars)
-        cars = list(cars)
-
-        mean_cars = 0
-        var_cars = 0
-
-        for row in cars:
-            mean_cars += float(row[2])
-            var_cars += pow(float(row[2]) / float(row[3]), 2) / (evtWinh - evtWinl)
-
-        mean_cars /= len(cars)
-        var_cars /= len(cars) * len(cars)
-        print "mean car "
-        print "mean car | V(mean car) | z-stat"
-        print [mean_cars, var_cars, mean_cars / var_cars**0.5]
-        print "\n"
-
-
-    ########|CAR| and CAR^2
-    mc_car(estWinl, estWinh, evtWinl, evtWinh, "abs")
-    mc_car(estWinl, estWinh, evtWinl, evtWinh, "sq")
-
-
-
-
-#main_process(-60,-30,-5,0,"trial_consistent_dates")
-
-#main_process(-60,-30,-5,0,"trial_consistent_dates_100th")
+#CAR_total()
