@@ -1,52 +1,51 @@
 ITGR,2017-02-09,"[-180, -10)",Not enough price data for this duration
 UEIC,2016-10-17,"[-180, -10)","Zero Price error, 2016-06-30 price is : 72.279999 | "
 EVBG,2013-08-30,"[-180, -10)",the Event Date does not exist in its price file
-EVBG,2013-08-30,"[-2, 0)",the Event Date does not exist in its price file
+EVBG,2013-08-30,"[0, 2)",the Event Date does not exist in its price file
 AVX,2017-02-09,"[-180, -10)","Zero Price error, 2016-06-30 price is : 13.186188 | "
 ORCL,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-ORCL,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+ORCL,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SNPS,2016-10-11,"[-180, -10)","Zero Price error, 2016-06-30 price is : 54.080002 | "
 TWTR,2013-05-10,"[-180, -10)",the Event Date does not exist in its price file
-TWTR,2013-05-10,"[-2, 0)",the Event Date does not exist in its price file
+TWTR,2013-05-10,"[0, 2)",the Event Date does not exist in its price file
 QTM,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-QTM,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+QTM,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 NTRA,2015-06-12,"[-180, -10)",the Event Date does not exist in its price file
-NTRA,2015-06-12,"[-2, 0)",the Event Date does not exist in its price file
+NTRA,2015-06-12,"[0, 2)",the Event Date does not exist in its price file
 NVTA,2015-06-12,"[-180, -10)",Not enough price data for this duration
 TWTR,2013-08-30,"[-180, -10)",the Event Date does not exist in its price file
-TWTR,2013-08-30,"[-2, 0)",the Event Date does not exist in its price file
+TWTR,2013-08-30,"[0, 2)",the Event Date does not exist in its price file
 AAPL,2017-04-14,"[-180, -10)",the Event Date does not exist in its price file
-AAPL,2017-04-14,"[-2, 0)",the Event Date does not exist in its price file
+AAPL,2017-04-14,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-04-14,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-04-14,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-04-14,"[0, 2)",the Event Date does not exist in its price file
 SNPS,2016-10-17,"[-180, -10)","Zero Price error, 2016-06-30 price is : 54.080002 | "
 SQ,2015-10-16,"[-180, -10)",the Event Date does not exist in its price file
-SQ,2015-10-16,"[-2, 0)",the Event Date does not exist in its price file
+SQ,2015-10-16,"[0, 2)",the Event Date does not exist in its price file
 SQ,2016-04-14,"[-180, -10)",Not enough price data for this duration
 CRDS,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-CRDS,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+CRDS,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 CSCO,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-CSCO,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+CSCO,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 NTAP,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-NTAP,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+NTAP,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-06-06,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-06-06,"[-2, 0)",the Event Date does not exist in its price file
+SPY,2017-06-06,"[0, 2)",the Event Date does not exist in its price file
 SHPG,2016-10-13,"[-180, -10)",Not enough price data for this duration
 TWTR,2014-02-26,"[-180, -10)",Not enough price data for this duration
 IBM,2017-05-26,"[-180, -10)",the Event Date does not exist in its price file
-IBM,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
+IBM,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
 SPY,2017-05-26,"[-180, -10)",the Event Date does not exist in its price file
-SPY,2017-05-26,"[-2, 0)",the Event Date does not exist in its price file
-LLNW,2016-02-01,"[-2, 0)","Prices are constant in this duration, not useful"
+SPY,2017-05-26,"[0, 2)",the Event Date does not exist in its price file
 AMTD,2016-10-11,"[-180, -10)","Zero Price error, 2016-06-30 price is : 27.928671 | "
 NTAP,2016-08-09,"[-180, -10)","Zero Price error, 2016-01-28 price is : 0.000000 | Zero Price error, 2016-01-29 price is : 0.000000 | Zero Price error, 2016-02-01 price is : 0.000000 | Zero Price error, 2016-02-02 price is : 0.000000 | Zero Price error, 2016-02-03 price is : 0.000000 | Zero Price error, 2016-02-04 price is : 0.000000 | Zero Price error, 2016-02-05 price is : 0.000000 | Zero Price error, 2016-02-08 price is : 0.000000 | Zero Price error, 2016-02-09 price is : 0.000000 | Zero Price error, 2016-02-10 price is : 0.000000 | Zero Price error, 2016-02-11 price is : 0.000000 | Zero Price error, 2016-02-12 price is : 0.000000 | Zero Price error, 2016-02-16 price is : 0.000000 | Zero Price error, 2016-02-17 price is : 0.000000 | Zero Price error, 2016-02-18 price is : 0.000000 | Zero Price error, 2016-02-19 price is : 0.000000 | Zero Price error, 2016-02-22 price is : 0.000000 | Zero Price error, 2016-02-23 price is : 0.000000 | Zero Price error, 2016-02-24 price is : 0.000000 | Zero Price error, 2016-02-25 price is : 0.000000 | Zero Price error, 2016-02-26 price is : 0.000000 | Zero Price error, 2016-02-29 price is : 0.000000 | Zero Price error, 2016-03-01 price is : 0.000000 | Zero Price error, 2016-03-02 price is : 0.000000 | Zero Price error, 2016-03-03 price is : 0.000000 | Zero Price error, 2016-03-04 price is : 0.000000 | Zero Price error, 2016-03-07 price is : 0.000000 | Zero Price error, 2016-03-08 price is : 0.000000 | Zero Price error, 2016-03-09 price is : 0.000000 | Zero Price error, 2016-03-10 price is : 0.000000 | Zero Price error, 2016-03-11 price is : 0.000000 | Zero Price error, 2016-03-14 price is : 0.000000 | Zero Price error, 2016-03-15 price is : 0.000000 | Zero Price error, 2016-03-16 price is : 0.000000 | Zero Price error, 2016-03-17 price is : 0.000000 | Zero Price error, 2016-03-18 price is : 0.000000 | Zero Price error, 2016-03-21 price is : 0.000000 | Zero Price error, 2016-03-22 price is : 0.000000 | Zero Price error, 2016-03-23 price is : 0.000000 | Zero Price error, 2016-03-24 price is : 0.000000 | Zero Price error, 2016-03-28 price is : 0.000000 | Zero Price error, 2016-03-29 price is : 0.000000 | Zero Price error, 2016-03-30 price is : 0.000000 | Zero Price error, 2016-03-31 price is : 0.000000 | Zero Price error, 2016-04-01 price is : 0.000000 | Zero Price error, 2016-04-04 price is : 0.000000 | Zero Price error, 2016-04-05 price is : 0.000000 | Zero Price error, 2016-04-06 price is : 0.000000 | Zero Price error, 2016-04-07 price is : 0.000000 | Zero Price error, 2016-04-08 price is : 0.000000 | Zero Price error, 2016-04-11 price is : 0.000000 | Zero Price error, 2016-04-12 price is : 0.000000 | Zero Price error, 2016-04-13 price is : 0.000000 | Zero Price error, 2016-04-14 price is : 0.000000 | Zero Price error, 2016-04-15 price is : 0.000000 | Zero Price error, 2016-04-18 price is : 0.000000 | Zero Price error, 2016-04-19 price is : 0.000000 | Zero Price error, 2016-04-20 price is : 0.000000 | Zero Price error, 2016-04-21 price is : 0.000000 | Zero Price error, 2016-04-22 price is : 0.000000 | Zero Price error, 2016-04-25 price is : 0.000000 | Zero Price error, 2016-04-26 price is : 0.000000 | Zero Price error, 2016-04-27 price is : 0.000000 | Zero Price error, 2016-04-28 price is : 0.000000 | Zero Price error, 2016-04-29 price is : 0.000000 | Zero Price error, 2016-05-02 price is : 0.000000 | Zero Price error, 2016-05-03 price is : 0.000000 | Zero Price error, 2016-05-04 price is : 0.000000 | Zero Price error, 2016-05-05 price is : 0.000000 | Zero Price error, 2016-05-06 price is : 0.000000 | Zero Price error, 2016-05-09 price is : 0.000000 | Zero Price error, 2016-05-10 price is : 0.000000 | Zero Price error, 2016-05-11 price is : 0.000000 | Zero Price error, 2016-05-12 price is : 0.000000 | Zero Price error, 2016-05-13 price is : 0.000000 | Zero Price error, 2016-05-16 price is : 0.000000 | Zero Price error, 2016-05-17 price is : 0.000000 | Zero Price error, 2016-05-18 price is : 0.000000 | Zero Price error, 2016-05-19 price is : 0.000000 | Zero Price error, 2016-05-20 price is : 0.000000 | Zero Price error, 2016-05-23 price is : 0.000000 | Zero Price error, 2016-05-24 price is : 0.000000 | Zero Price error, 2016-05-25 price is : 0.000000 | Zero Price error, 2016-05-26 price is : 0.000000 | Zero Price error, 2016-05-27 price is : 0.000000 | Zero Price error, 2016-05-31 price is : 0.000000 | Zero Price error, 2016-06-01 price is : 0.000000 | Zero Price error, 2016-06-02 price is : 0.000000 | Zero Price error, 2016-06-03 price is : 0.000000 | Zero Price error, 2016-06-06 price is : 0.000000 | Zero Price error, 2016-06-07 price is : 0.000000 | Zero Price error, 2016-06-08 price is : 0.000000 | Zero Price error, 2016-06-09 price is : 0.000000 | Zero Price error, 2016-06-10 price is : 0.000000 | Zero Price error, 2016-06-13 price is : 0.000000 | Zero Price error, 2016-06-14 price is : 0.000000 | Zero Price error, 2016-06-15 price is : 0.000000 | Zero Price error, 2016-06-16 price is : 0.000000 | Zero Price error, 2016-06-17 price is : 0.000000 | Zero Price error, 2016-06-20 price is : 0.000000 | Zero Price error, 2016-06-21 price is : 0.000000 | Zero Price error, 2016-06-22 price is : 0.000000 | Zero Price error, 2016-06-23 price is : 0.000000 | Zero Price error, 2016-06-24 price is : 0.000000 | Zero Price error, 2016-06-27 price is : 0.000000 | Zero Price error, 2016-06-28 price is : 0.000000 | Zero Price error, 2016-06-29 price is : 0.000000 | Zero Price error, 2016-06-30 price is : 0.000000 | Zero Price error, 2016-07-01 price is : 0.000000 | Zero Price error, 2016-07-05 price is : 0.000000 | Zero Price error, 2016-07-06 price is : 0.000000 | Zero Price error, 2016-07-07 price is : 0.000000 | Zero Price error, 2016-07-08 price is : 0.000000 | Zero Price error, 2016-07-11 price is : 0.000000 | Zero Price error, 2016-07-12 price is : 0.000000 | Zero Price error, 2016-07-13 price is : 0.000000 | Zero Price error, 2016-07-14 price is : 0.000000 | Zero Price error, 2016-07-15 price is : 0.000000 | Zero Price error, 2016-07-18 price is : 0.000000 | Zero Price error, 2016-07-19 price is : 0.000000 | Zero Price error, 2016-07-20 price is : 0.000000 | Zero Price error, 2016-07-21 price is : 0.000000 | Zero Price error, 2016-07-22 price is : 0.000000 | Zero Price error, 2016-07-25 price is : 0.000000 | Zero Price error, 2016-07-26 price is : 0.000000 | "
-NTAP,2016-08-09,"[-2, 0)","Zero Price error, 2016-08-05 price is : 0.000000 | Zero Price error, 2016-08-08 price is : 0.000000 | Zero Price error, 2016-08-09 price is : 0.000000 | "
+NTAP,2016-08-09,"[0, 2)","Zero Price error, 2016-08-09 price is : 0.000000 | Zero Price error, 2016-08-10 price is : 0.000000 | Zero Price error, 2016-08-11 price is : 0.000000 | "
 SUPN,2012-06-18,"[-180, -10)",Not enough price data for this duration

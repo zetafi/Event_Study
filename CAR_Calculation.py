@@ -583,25 +583,25 @@ def CAR_total():
     paths = [a1path, a2path, a3path]
 
 
-    ## normal estimation windows
-    for path in paths:
-        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
-        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
-        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
-        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
-        car_calculator(estWinl, estWinh, evtWin5l, evtWin5h, path)
-        car_calculator(estWinl, estWinh, evtWin6l, evtWin6h, path)
-        car_calculator(estWinl, estWinh, evtWin7l, evtWin7h, path)
-
-    # extended estimation windows && Bootstrap CAR for extended windows
-    for path in paths:
-        car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin5l, evtWin5h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin6l, evtWin6h, path, True)
-        car_calculator(extestWinl, extestWinh, evtWin7l, evtWin7h, path, True)
+    # ## normal estimation windows
+    # for path in paths:
+    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path)
+    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path)
+    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path)
+    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path)
+    #     car_calculator(estWinl, estWinh, evtWin5l, evtWin5h, path)
+    #     car_calculator(estWinl, estWinh, evtWin6l, evtWin6h, path)
+    #     car_calculator(estWinl, estWinh, evtWin7l, evtWin7h, path)
+    #
+    # # extended estimation windows && Bootstrap CAR for extended windows
+    # for path in paths:
+    #     car_calculator(extestWinl, extestWinh, evtWin1l, evtWin1h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin2l, evtWin2h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin3l, evtWin3h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin4l, evtWin4h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin5l, evtWin5h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin6l, evtWin6h, path, True)
+    #     car_calculator(extestWinl, extestWinh, evtWin7l, evtWin7h, path, True)
 
 
 
