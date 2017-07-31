@@ -100,6 +100,7 @@ def all_mean_CAR():
                 filepath = glob("data/" + type + nCAR + t + win + "_" + estWin + "*.csv")[0]
                 result = [win] + mean_CAR(filepath)
                 writer.writerow(result)
+                print result
         print "\n\n Finish_Standard: " + t + "\n\n"
     print "\n\n\nEND  Standard estimation window mCAR calculation\n\n\n"
     ### END Standard estimation window
@@ -168,7 +169,7 @@ def all_mean_CAR():
 
 
 
-#all_mean_CAR()
+
 
 
 
@@ -362,7 +363,8 @@ def all_abs_sq_CAR(type):
     ### END Standard estimation window
 
 
+#all_mean_CAR()
 
 all_abs_sq_CAR("abs")
 
-#all_abs_sq_CAR("sq")
+all_abs_sq_CAR("sq")

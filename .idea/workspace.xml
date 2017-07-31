@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acda4c6b-84e2-40e2-93d3-ea2035482b52" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A1/Old_A1/Mean_CAR.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A1/Old_A1/abs_CAR.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A2/abs_CAR.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A3/abs_CAR.csv" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CAR_Calculation.py" afterPath="$PROJECT_DIR$/CAR_Calculation.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mean_Abs_Sq_CAR.py" afterPath="$PROJECT_DIR$/Mean_Abs_Sq_CAR.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/Appellate/CAR/A2_[-2,0)_EstWin-180,-10_appellate_affirmed.csv" afterPath="$PROJECT_DIR$/data/Appellate/CAR/A2_[-2,0)_EstWin-180,-10_appellate_affirmed.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/Appellate/CAR/ERROR_FILE_A2_[-2,0)_EstWin-180,-10.csv" afterPath="$PROJECT_DIR$/data/Appellate/CAR/ERROR_FILE_A2_[-2,0)_EstWin-180,-10.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Result/MultiFactor/A1/Mean_CAR.csv" afterPath="$PROJECT_DIR$/Result/MultiFactor/A1/Mean_CAR.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Result/MultiFactor/A2/Mean_CAR.csv" afterPath="$PROJECT_DIR$/Result/MultiFactor/A2/Mean_CAR.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Result/MultiFactor/A3/Mean_CAR.csv" afterPath="$PROJECT_DIR$/Result/MultiFactor/A3/Mean_CAR.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A2/Mean_CAR.csv" afterPath="$PROJECT_DIR$/Result/StandardEstWin/A2/Mean_CAR.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Result/StandardEstWin/A3/Mean_CAR.csv" afterPath="$PROJECT_DIR$/Result/StandardEstWin/A3/Mean_CAR.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/Appellate/MFCAR/A1_[-20,0)_EstWin-60,-30_appellate_all.csv" afterPath="$PROJECT_DIR$/data/Appellate/MFCAR/A1_[-20,0)_EstWin-60,-30_appellate_all.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,9 +26,9 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Week5$Unittests_in_test_py.coverage" NAME="Unittests in test.py Coverage Results" MODIFIED="1501004404447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Week5$Trial_Division.coverage" NAME="Trial_Division Coverage Results" MODIFIED="1500670570785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Week5$calculation.coverage" NAME="calculation Coverage Results" MODIFIED="1501527093970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Week5$calculation.coverage" NAME="calculation Coverage Results" MODIFIED="1501536691967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Week5$Appellate_Division.coverage" NAME="Appellate_Division Coverage Results" MODIFIED="1501525724914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Week5$Mean_Abs_Sq_CAR.coverage" NAME="Mean_Abs_Sq_CAR Coverage Results" MODIFIED="1501520459777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Week5$Mean_Abs_Sq_CAR.coverage" NAME="Mean_Abs_Sq_CAR Coverage Results" MODIFIED="1501540434663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Week5$proj_test.coverage" NAME="proj_test Coverage Results" MODIFIED="1501521928564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Week5$final_trial.coverage" NAME="final_trial Coverage Results" MODIFIED="1500412502079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -35,13 +44,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CAR_Calculation.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CAR_Calculation.py">
+      <file leaf-file-name="Mean_Abs_Sq_CAR.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Mean_Abs_Sq_CAR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2829">
-              <caret line="606" column="0" lean-forward="true" selection-start-line="606" selection-start-column="0" selection-end-line="606" selection-end-column="0" />
+            <state relative-caret-position="365">
+              <caret line="369" column="0" lean-forward="true" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +84,8 @@
         <option value="$PROJECT_DIR$/Calculation.py" />
         <option value="$PROJECT_DIR$/proj_test.py" />
         <option value="$PROJECT_DIR$/Appellate_Division.py" />
-        <option value="$PROJECT_DIR$/Mean_Abs_Sq_CAR.py" />
         <option value="$PROJECT_DIR$/CAR_Calculation.py" />
+        <option value="$PROJECT_DIR$/Mean_Abs_Sq_CAR.py" />
       </list>
     </option>
   </component>
@@ -155,7 +164,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.calculation">
+  <component name="RunManager" selected="Python.Mean_Abs_Sq_CAR">
     <configuration default="false" name="calculation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -405,10 +414,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.calculation" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Appellate_Division" />
-        <item index="2" class="java.lang.String" itemvalue="Python.proj_test" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Mean_Abs_Sq_CAR" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Mean_Abs_Sq_CAR" />
+        <item index="1" class="java.lang.String" itemvalue="Python.calculation" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Appellate_Division" />
+        <item index="3" class="java.lang.String" itemvalue="Python.proj_test" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in proj_test.py" />
       </list>
     </recent_temporary>
@@ -449,7 +458,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909092" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48727274" sideWeight="0.5030675" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40545455" sideWeight="0.4969325" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.4969325" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -694,22 +703,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mean_Abs_Sq_CAR.py">
+    <entry file="file://$PROJECT_DIR$/CAR_Calculation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="368" column="0" lean-forward="false" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="616" column="80" lean-forward="true" selection-start-line="608" selection-start-column="6" selection-end-line="616" selection-end-column="80" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CAR_Calculation.py">
+    <entry file="file://$PROJECT_DIR$/Mean_Abs_Sq_CAR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2829">
-          <caret line="606" column="0" lean-forward="true" selection-start-line="606" selection-start-column="0" selection-end-line="606" selection-end-column="0" />
+        <state relative-caret-position="365">
+          <caret line="369" column="0" lean-forward="true" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

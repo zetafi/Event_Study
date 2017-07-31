@@ -1,0 +1,82 @@
+EVBG,2013-08-30,"[-60, -30)",the Event Date does not exist in its price file
+EVBG,2013-08-30,"[0, 5)",the Event Date does not exist in its price file
+ORCL,2017-06-06,"[-60, -30)",the Event Date does not exist in its price file
+ORCL,2017-06-06,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+TWTR,2013-05-10,"[-60, -30)",the Event Date does not exist in its price file
+TWTR,2013-05-10,"[0, 5)",the Event Date does not exist in its price file
+QTM,2017-06-06,"[-60, -30)",the Event Date does not exist in its price file
+QTM,2017-06-06,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+NTRA,2015-06-12,"[-60, -30)",the Event Date does not exist in its price file
+NTRA,2015-06-12,"[0, 5)",the Event Date does not exist in its price file
+TWTR,2013-08-30,"[-60, -30)",the Event Date does not exist in its price file
+TWTR,2013-08-30,"[0, 5)",the Event Date does not exist in its price file
+AAPL,2017-04-14,"[-60, -30)",the Event Date does not exist in its price file
+AAPL,2017-04-14,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-04-14,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-04-14,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+EBAY,2017-05-23,"[0, 5)",Not enough price data for this duration
+SQ,2015-10-16,"[-60, -30)",the Event Date does not exist in its price file
+SQ,2015-10-16,"[0, 5)",the Event Date does not exist in its price file
+CRDS,2017-06-06,"[-60, -30)",the Event Date does not exist in its price file
+CRDS,2017-06-06,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+CSCO,2017-06-06,"[-60, -30)",the Event Date does not exist in its price file
+CSCO,2017-06-06,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+NTAP,2017-06-06,"[-60, -30)",the Event Date does not exist in its price file
+NTAP,2017-06-06,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: Mkt-RF,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: SMB,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[-60, -30)",TYPE: HML,the Event Date does not exist in the factor file
+FACTOR_ERROR,2017-06-06,"[0, 5)",TYPE: HML,the Event Date does not exist in the factor file
+AMZN,2017-05-23,"[0, 5)",Not enough price data for this duration
+SHPG,2016-10-13,"[-60, -30)",Not enough price data for this duration
+IBM,2017-05-26,"[-60, -30)",the Event Date does not exist in its price file
+IBM,2017-05-26,"[0, 5)",the Event Date does not exist in its price file
+FACTOR_ERROR,2017-05-26,"[0, 5)",TYPE: Mkt-RF,Not enough factors data for this duration
+FACTOR_ERROR,2017-05-26,"[0, 5)",TYPE: Mkt-RF,Not enough factors data for this duration
+FACTOR_ERROR,2017-05-26,"[0, 5)",TYPE: SMB,Not enough factors data for this duration
+FACTOR_ERROR,2017-05-26,"[0, 5)",TYPE: HML,Not enough factors data for this duration
+NTAP,2016-08-09,"[-60, -30)","Zero Price error, 2016-05-13 price is : 0.000000 | Zero Price error, 2016-05-16 price is : 0.000000 | Zero Price error, 2016-05-17 price is : 0.000000 | Zero Price error, 2016-05-18 price is : 0.000000 | Zero Price error, 2016-05-19 price is : 0.000000 | Zero Price error, 2016-05-20 price is : 0.000000 | Zero Price error, 2016-05-23 price is : 0.000000 | Zero Price error, 2016-05-24 price is : 0.000000 | Zero Price error, 2016-05-25 price is : 0.000000 | Zero Price error, 2016-05-26 price is : 0.000000 | Zero Price error, 2016-05-27 price is : 0.000000 | Zero Price error, 2016-05-31 price is : 0.000000 | Zero Price error, 2016-06-01 price is : 0.000000 | Zero Price error, 2016-06-02 price is : 0.000000 | Zero Price error, 2016-06-03 price is : 0.000000 | Zero Price error, 2016-06-06 price is : 0.000000 | Zero Price error, 2016-06-07 price is : 0.000000 | Zero Price error, 2016-06-08 price is : 0.000000 | Zero Price error, 2016-06-09 price is : 0.000000 | Zero Price error, 2016-06-10 price is : 0.000000 | Zero Price error, 2016-06-13 price is : 0.000000 | Zero Price error, 2016-06-14 price is : 0.000000 | Zero Price error, 2016-06-15 price is : 0.000000 | Zero Price error, 2016-06-16 price is : 0.000000 | Zero Price error, 2016-06-17 price is : 0.000000 | Zero Price error, 2016-06-20 price is : 0.000000 | Zero Price error, 2016-06-21 price is : 0.000000 | Zero Price error, 2016-06-22 price is : 0.000000 | Zero Price error, 2016-06-23 price is : 0.000000 | Zero Price error, 2016-06-24 price is : 0.000000 | Zero Price error, 2016-06-27 price is : 0.000000 | "
+NTAP,2016-08-09,"[0, 5)","Zero Price error, 2016-08-09 price is : 0.000000 | Zero Price error, 2016-08-10 price is : 0.000000 | Zero Price error, 2016-08-11 price is : 0.000000 | Zero Price error, 2016-08-12 price is : 0.000000 | Zero Price error, 2016-08-15 price is : 0.000000 | Zero Price error, 2016-08-16 price is : 0.000000 | "
+SUPN,2012-06-18,"[-60, -30)",Not enough price data for this duration

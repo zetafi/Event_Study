@@ -419,8 +419,7 @@ def abnormal_return_mf(compCode, eDate, estbegin, estend, evtbegin, evtend):
     #print compCode
     #print eDate
     Y = map(operator.sub, estwin_rr, est_Rf)
-    X = [[1]*(estend-estbegin-1), est_Rm_Rf, est_SMB, est_HML]
-
+    X = [[1]*(estend-estbegin), est_Rm_Rf, est_SMB, est_HML]
 
     Y = np.matrix(Y).getT()
     X = np.matrix(X).getT()
@@ -437,12 +436,12 @@ def abnormal_return_mf(compCode, eDate, estbegin, estend, evtbegin, evtend):
 
     # AR
     AB_RE = np.matrix(evtwin_rr).getT() - np.matrix(evt_Rf).getT() \
-            - (np.matrix([[1]*(evtend-evtbegin-1), evt_Rm_Rf, evt_SMB, evt_HML]).getT()).dot(BETA)
+            - (np.matrix([[1]*(evtend-evtbegin), evt_Rm_Rf, evt_SMB, evt_HML]).getT()).dot(BETA)
 
     # CAR
     CAR = AB_RE.sum()
     # CAR/sigma
-    AB_RE_STD = CAR / (SDRES * ((evtend - evtbegin-1) ** 0.5))
+    AB_RE_STD = CAR / (SDRES * ((evtend - evtbegin) ** 0.5))
 
     return [compCode, eDate.date().isoformat(), CAR, AB_RE_STD]
 
@@ -500,7 +499,9 @@ def car_calculator(estWinl, estWinh, evtWinl, evtWinh, fpath, bs = False, mf = F
                         count += 1
                         print liste
                         writer.writerow(liste)
+            print "\n\n\n\n\n\n"
             print ["MFCAR File:" + tblname, count]
+            print "\n\n\n\n\n\n"
         else:
             if not os.path.isdir("data/Trial/CAR"):
                 os.mkdir("data/Trial/CAR")
@@ -605,15 +606,15 @@ def CAR_total():
 
 
 
-    ## Multifactor Model
-    for path in paths:
-        car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin5l, evtWin5h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin6l, evtWin6h, path, True, True)
-        car_calculator(estWinl, estWinh, evtWin7l, evtWin7h, path, True, True)
+    # ## Multifactor Model
+    # for path in paths:
+    #     car_calculator(estWinl, estWinh, evtWin1l, evtWin1h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin2l, evtWin2h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin3l, evtWin3h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin4l, evtWin4h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin5l, evtWin5h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin6l, evtWin6h, path, True, True)
+    #     car_calculator(estWinl, estWinh, evtWin7l, evtWin7h, path, True, True)
 
 
-CAR_total()
+#CAR_total()
