@@ -39,9 +39,9 @@ def all_appellate_data():
 
 
 
-#1056
-#614 affirmed
-#442 nonaffirmed
+#674
+#425 affirmed
+#259 nonaffirmed
 def A1_A2_A3_appellate_all_and_division():
     # filings are too long, add this line to avoid error when reading the csv
     csv.field_size_limit(sys.maxsize)
@@ -81,7 +81,7 @@ def A1_A2_A3_appellate_all_and_division():
                            and ("The judgment or decision is:" in filings[ind]) \
                            and not ("This entry was made in error" in filings[ind])
 
-                    if cond:
+                    if cond and fdates[ind] == tdate:
                         judgement = filings[ind]
                         findindex = judgement.find(keyword)
                         resbegin = findindex + len(keyword)
@@ -92,26 +92,27 @@ def A1_A2_A3_appellate_all_and_division():
                         else:
                             resultnonaffirm.append(row[8] + "@" + fdates[ind])
 
-            else:
-                evtfilings = ""
-
-                for ind in range(len(filings)):
-                    if fdates[ind] == tdate:
-                        evtfilings += filings[ind] + " | "
-
-                cond = ("ORDER" in evtfilings) and (
-                    ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
-                    or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
-                    or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
-                    "REVERSE" in evtfilings)
-                    or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings)) \
-                    and not (("dismiss" in evtfilings) or ("terminat" in evtfilings))
-
-                if cond :
-                    if "affirm" in evtfilings:
-                        resultaffirm.append(row[8] + "@" + tdate)
-                    else:
-                        resultnonaffirm.append(row[8] + "@" + tdate)
+            ## 27 sepicial cases.
+            # else:
+            #     evtfilings = ""
+            #
+            #     for ind in range(len(filings)):
+            #         if fdates[ind] == tdate:
+            #             evtfilings += filings[ind] + " | "
+            #
+            #     cond = ("ORDER" in evtfilings) and (
+            #         ("affirm" in evtfilings) or ("AFFIRM" in evtfilings) or ("Affirm" in evtfilings)
+            #         or ("vacat" in evtfilings) or ("VACAT" in evtfilings) or ("Vacat" in evtfilings)
+            #         or ("reverse" in evtfilings) or ("Reverse" in evtfilings) or (
+            #         "REVERSE" in evtfilings)
+            #         or ("remand" in evtfilings) or ("Remand" in evtfilings) or ("REMAND" in evtfilings)) \
+            #         and not (("dismiss" in evtfilings) or ("terminat" in evtfilings))
+            #
+            #     if cond :
+            #         if "affirm" in evtfilings:
+            #             resultaffirm.append(row[8] + "@" + tdate)
+            #         else:
+            #             resultnonaffirm.append(row[8] + "@" + tdate)
 
         resultall = resultaffirm + resultnonaffirm
 
@@ -144,6 +145,9 @@ def A1_A2_A3_appellate_all_and_division():
         print ["All appellate data : ", len(resultall)]
         print ["Appellate with affirmed decision : ", len(resultaffirm)]
         print ["Appellate with not totally affirmed decision : ", len(resultnonaffirm)]
+
+
+
 
 
 A1_A2_A3_appellate_all_and_division()

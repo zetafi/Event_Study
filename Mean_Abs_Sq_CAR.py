@@ -240,13 +240,17 @@ def all_abs_sq_CAR(type):
 
     all_table = [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, a1, a2, a3]
 
-    evtWin1 = "[-5,0)"
-    evtWin2 = "[-2,0)"
-    evtWin3 = "[-2,3)"
-    evtWin4 = "[0,2)"
+    # evtWin1 = "[-5,0)"
+    # evtWin2 = "[-2,0)"
+    # evtWin3 = "[-2,3)"
+    # evtWin4 = "[0,2)"
 
-    all_evtWin = [evtWin1, evtWin2, evtWin3, evtWin4]
-    #all_evtWin = [evtWin1]
+
+    evtWin1 = "[-20,-10)"
+
+
+    #all_evtWin = [evtWin1, evtWin2, evtWin3, evtWin4]
+    all_evtWin = [evtWin1]
 
     estWin = "EstWin-60,-30_"
     extestWin = "EstWin-180,-10_"
@@ -263,7 +267,7 @@ def all_abs_sq_CAR(type):
         os.mkdir("Result/StandardEstWin/")
 
     ##TODO appellate error
-    ap_table = [a1,a2,a3]
+    ap_table = [a1]
     for t in ap_table:
     #for t in all_table:
         print "\n\n Start_Standard: " + t + "\n\n"
@@ -355,6 +359,6 @@ def all_abs_sq_CAR(type):
 
 
 
-#all_abs_sq_CAR("abs")
+all_abs_sq_CAR("abs")
 
 #all_abs_sq_CAR("sq")

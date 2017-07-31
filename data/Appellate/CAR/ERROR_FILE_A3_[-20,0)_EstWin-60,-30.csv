@@ -1,0 +1,17 @@
+MSTR,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+MSTR,2015-04-03,"[-20, 0)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-20, 0)",the Event Date does not exist in its price file
+PHG,2016-07-28,"[-20, 0)","Zero Price error, 2016-06-30 price is : 24.343954 | "
+FDC,2015-07-31,"[-60, -30)",the Event Date does not exist in its price file
+FDC,2015-07-31,"[-20, 0)",the Event Date does not exist in its price file
+NUVA,2017-05-31,"[-60, -30)",the Event Date does not exist in its price file
+NUVA,2017-05-31,"[-20, 0)",the Event Date does not exist in its price file
+SPY,2017-05-31,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2017-05-31,"[-20, 0)",the Event Date does not exist in its price file
+ORCL,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+ORCL,2015-04-03,"[-20, 0)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-60, -30)",the Event Date does not exist in its price file
+SPY,2015-04-03,"[-20, 0)",the Event Date does not exist in its price file
+CTAA,2013-11-25,"[-60, -30)","Prices are constant in this duration, not useful"
+CTAA,2013-11-25,"[-20, 0)","Prices are constant in this duration, not useful"
